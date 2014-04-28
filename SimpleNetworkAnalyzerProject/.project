@@ -14,4 +14,26 @@
 	<natures>
 		<nature>org.eclipse.jdt.core.javanature</nature>
 	</natures>
+	<linkedResources>
+		<link>
+			<name>src/TestSubString.java</name>
+			<type>1</type>
+			<locationURI>PARENT-3-PROJECT_LOC/Google%20Drive/Progetto%20Tirocinio/SimpleNetworkAnalyzerProject/src/TestSubString.java</locationURI>
+		</link>
+		<link>
+			<name>src/it/nlmk/progetto01/Configurazione.java</name>
+			<type>1</type>
+			<locationURI>PARENT-3-PROJECT_LOC/Google%20Drive/Progetto%20Tirocinio/SimpleNetworkAnalyzerProject/src/it/nlmk/progetto01/Configurazione.java</locationURI>
+		</link>
+		<link>
+			<name>src/it/nlmk/progetto01/Test.java</name>
+			<type>1</type>
+			<locationURI>PARENT-3-PROJECT_LOC/Google%20Drive/Progetto%20Tirocinio/SimpleNetworkAnalyzerProject/src/it/nlmk/progetto01/Test.java</locationURI>
+		</link>
+		<link>
+			<name>src/it/nlmk/progetto01/Tools.java</name>
+			<type>1</type>
+			<locationURI>PARENT-3-PROJECT_LOC/Google%20Drive/Progetto%20Tirocinio/SimpleNetworkAnalyzerProject/src/it/nlmk/progetto01/Tools.java</locationURI>
+		</link>
+	</linkedResources>
 </projectDescription>
