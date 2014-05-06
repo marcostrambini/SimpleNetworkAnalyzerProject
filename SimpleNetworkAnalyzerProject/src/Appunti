@@ -1,0 +1,5 @@
+Gestione ip:
+- quando il controllo sul file di configurazione è corretto, creo un file ipAddress.txt che contiene la lista degli ip trovati
+
+Gestione oggetto "classificatore":
+- JPanel con: JLabel , menu a tendina (combobox) contenente i gruppi creati in precedenza, testfield per inserire una descrizione
