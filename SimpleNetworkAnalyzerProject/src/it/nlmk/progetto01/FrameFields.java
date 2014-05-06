@@ -55,7 +55,7 @@ public class FrameFields extends JFrame{
 						}
 					} catch (IOException e) {
 						// TODO Auto-generated catch block
-						e.printStackTrace();
+					    e.printStackTrace();
 					}
 				}
 				
