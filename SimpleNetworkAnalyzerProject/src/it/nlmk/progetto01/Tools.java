@@ -97,9 +97,9 @@ public class Tools {
 	public void leggiFile(String nomeFile) throws IOException{
 		FileReader fr = new FileReader(nomeFile);
         BufferedReader br = new BufferedReader(fr);
-		
-        while(br.readLine() != null){
-        	System.out.println(br.readLine());
+        String sCurrentLine;
+        while((sCurrentLine = br.readLine()) != null){
+        	System.out.println(sCurrentLine);
         }
 		fr.close();
 			
@@ -112,24 +112,31 @@ public class Tools {
 	 * @throws IOException
 	 */
 	public ArrayList<String>  leggiFileRitorna(String nomeFile) throws IOException{
-
 		ArrayList<String> arrayLetto = new ArrayList<String>();
-		
-		
+		String stringa;
 		FileReader fr = new FileReader(nomeFile);
-        BufferedReader br = new BufferedReader(fr);
-		
-//        br.readLine();
-        while(br.readLine() != null){
-         arrayLetto.add(br.readLine());
-        	
-        }
-		fr.close();
+		BufferedReader br = new BufferedReader(fr);
+		//      br.readLine();
+		String sCurrentLine;
+		while((sCurrentLine = br.readLine()) != null){
 			
+			arrayLetto.add(sCurrentLine);
+		}
+		arrayLetto.add("FINE");
+		fr.close();
 		return arrayLetto;
 	}
+
+	public void clearFile(String nomeFile) throws FileNotFoundException{
+		PrintWriter pw = new PrintWriter(nomeFile); 
+		pw.close();
+		
+	}
 	
-	
+	public void deleteFile(String nomeFile){
+		File fileDelete = new File(nomeFile);
+		fileDelete.delete();
+	}
 	
 	
 }
