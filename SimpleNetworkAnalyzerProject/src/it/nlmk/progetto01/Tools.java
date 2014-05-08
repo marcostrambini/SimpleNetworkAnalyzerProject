@@ -127,12 +127,21 @@ public class Tools {
 		return arrayLetto;
 	}
 
+	/**
+	 * pulisce il contenuto di un file dato il nome come parametro
+	 * @param nomeFile
+	 * @throws FileNotFoundException
+	 */
 	public void clearFile(String nomeFile) throws FileNotFoundException{
 		PrintWriter pw = new PrintWriter(nomeFile); 
 		pw.close();
 		
 	}
 	
+	/**
+	 * cancella un file dato il nome come parametro
+	 * @param nomeFile
+	 */
 	public void deleteFile(String nomeFile){
 		File fileDelete = new File(nomeFile);
 		fileDelete.delete();
