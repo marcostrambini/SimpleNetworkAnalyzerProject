@@ -147,5 +147,33 @@ public class Tools {
 		fileDelete.delete();
 	}
 	
+	public void generaConfigIni(String[] listaParametri) throws IOException{
+		String nomeFile = "config.ini";
+		
+		creaFile(nomeFile);
+		clearFile(nomeFile);
+		
+		scriviFile(nomeFile, "**************************");
+		scriviFile(nomeFile, "* File di configurazione *");
+		scriviFile(nomeFile, "**************************");
+		scriviFile(nomeFile, "* ip address start");
+		scriviFile(nomeFile, "ipStart = "+listaParametri[0]);
+		scriviFile(nomeFile, "* ip address end");
+		scriviFile(nomeFile, "ipEnd = "+listaParametri[1]);
+		scriviFile(nomeFile, "* subnet mask");
+		scriviFile(nomeFile, "ipEnd = "+listaParametri[2]);
+		scriviFile(nomeFile, "* gateway");
+		scriviFile(nomeFile, "ipEnd = "+listaParametri[3]);
+		scriviFile(nomeFile, "* ip db");
+		scriviFile(nomeFile, "ipDb = "+listaParametri[4]);
+		scriviFile(nomeFile, "* Nome db");
+		scriviFile(nomeFile, "nomeDb = "+listaParametri[5]);
+		scriviFile(nomeFile, "* user Db");
+		scriviFile(nomeFile, "userDb = "+listaParametri[6]);
+		scriviFile(nomeFile, "* pwd db");
+		scriviFile(nomeFile, "pwdDb = "+listaParametri[7]);
+		
+	}
+	
 	
 }

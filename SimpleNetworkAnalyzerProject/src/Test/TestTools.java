@@ -47,6 +47,13 @@ public class TestTools {
 		tools.deleteFile(nomeFile);
 		tools.deleteFile(nomeFile2);
 		
+		tools.scriviFile("groups.txt", "test");
+		tools.leggiFile("groups.txt");
+//		tools.clearFile("groups.txt");
+		System.out.println("3: ---------------------------------------");
+		tools.leggiFile("groups.txt");
+//		tools.leggiFile("config2.ini");
+		
 	}
 
 }
