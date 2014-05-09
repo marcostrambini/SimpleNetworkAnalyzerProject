@@ -46,14 +46,18 @@ public class TestTools {
 		
 		tools.deleteFile(nomeFile);
 		tools.deleteFile(nomeFile2);
-		
+		tools.clearFile("groups.txt");
 		tools.scriviFile("groups.txt", "test");
 		tools.leggiFile("groups.txt");
 //		tools.clearFile("groups.txt");
 		System.out.println("3: ---------------------------------------");
 		tools.leggiFile("groups.txt");
 //		tools.leggiFile("config2.ini");
-		
+		String ipAddress = "100.200.30.40";
+//		tools.verificoConsistenzaValorParametriIp(ipAddress);
+		System.out.println("4: ---------------------------------------");
+	
+		System.out.println(tools.checkIp(ipAddress));
 	}
 
 }

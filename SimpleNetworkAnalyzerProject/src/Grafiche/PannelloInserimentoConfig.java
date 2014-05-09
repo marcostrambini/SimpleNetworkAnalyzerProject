@@ -1,7 +1,10 @@
 package Grafiche;
 
+import it.nlmk.progetto01.Coloratore;
+import it.nlmk.progetto01.Configurazione;
 import it.nlmk.progetto01.Tools;
 
+import java.awt.Color;
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
@@ -10,6 +13,7 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 
 import javax.swing.JButton;
+import javax.swing.JCheckBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -35,6 +39,8 @@ public class PannelloInserimentoConfig extends JFrame{
 	JTextField textNomeDb = new JTextField();
 	JTextField textUserDb = new JTextField();
 	JTextField textPortaDb = new JTextField();
+	
+	JCheckBox cb = new JCheckBox();
 
 	
 	
@@ -68,9 +74,7 @@ public class PannelloInserimentoConfig extends JFrame{
 		add(labelPortaDb);
 		add(textPortaDb);
 		
-		
-		
-		add(new JLabel());
+		add(cb);
 		add(button);
 		
 		ActionListener listener = new ActionListener(){
@@ -79,26 +83,57 @@ public class PannelloInserimentoConfig extends JFrame{
 			public void actionPerformed(ActionEvent arg0) {
 				// TODO Auto-generated method stub
 				Tools tools = new Tools();
+				Configurazione conf = new Configurazione();
+				Coloratore coloratore = new Coloratore();
 				String[] listaParametri = new String[8];
-				listaParametri[0] = textIpStart.getText();
-				listaParametri[1] = textIpEnd.getText();
-				listaParametri[2] = textMask.getText();
-				listaParametri[3] = textGateway.getText();
-				listaParametri[4] = textIpDb.getText();
+				
+				if(tools.checkIp(textIpStart.getText())){
+					listaParametri[0] = textIpStart.getText();
+					coloratore.coloraSfondoTextBianco(textIpStart);
+				}else
+					coloratore.coloraSfondoTextRosso(textIpStart);
+
+				if(tools.checkIp(textIpEnd.getText()))
+					listaParametri[1] = textIpEnd.getText();
+				else
+					textIpEnd.setBackground(Color.red);
+
+				if(tools.checkIp(textMask.getText()))
+					listaParametri[2] = textMask.getText();
+				else
+					textMask.setBackground(Color.red);
+
+				if(tools.checkIp(textGateway.getText()))
+					listaParametri[3] = textGateway.getText();
+				else
+					textGateway.setBackground(Color.red);
+
+				if(tools.checkIp(textIpDb.getText()))
+					listaParametri[4] = textIpDb.getText();
+				else
+					textIpDb.setBackground(Color.red);
+				
 				listaParametri[5] = textNomeDb.getText();
 				listaParametri[6] = textUserDb.getText();
 				listaParametri[7] = textPortaDb.getText();
-				
-				
-				
-			
-					try {
-						
-						tools.generaConfigIni(listaParametri);
-					} catch (IOException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-					}
+
+
+
+
+				try {
+
+					tools.generaConfigIni(listaParametri);
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+
+				try {
+					tools.leggiFile("config.ini");
+				} catch (IOException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
 			
 			}
 			
@@ -118,6 +153,7 @@ public class PannelloInserimentoConfig extends JFrame{
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		PannelloInserimentoConfig pic =  new PannelloInserimentoConfig();
+		
 		
 	}
 

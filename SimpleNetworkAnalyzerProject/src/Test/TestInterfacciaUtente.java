@@ -1,6 +1,6 @@
 package Test;
 
-import it.nlmk.progetto01.InterfacciaUtente;
+import Grafiche.InterfacciaUtente;
 
 public class TestInterfacciaUtente {
 

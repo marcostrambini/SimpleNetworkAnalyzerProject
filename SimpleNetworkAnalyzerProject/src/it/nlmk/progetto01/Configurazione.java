@@ -13,6 +13,8 @@ public class Configurazione {
 	private  String ipStart;
 	private  String gateway;
 	private  String ipEnd;
+	Tools tools = new Tools();
+	
 
 	/**
 	 * @param args
@@ -32,6 +34,8 @@ public class Configurazione {
 			System.out.println("ip " + (i+1) + " " + array[i]);
 			if(!checkIp(array[i]))
 				numFalse++;
+			
+			
 		}
 		if (numFalse>0)
 			System.out.println("Il file di configurazione presenta degli errori negli ip");
@@ -111,6 +115,9 @@ public class Configurazione {
 		else
 			System.out.println("File di configurazione mancante");
 	}
+	
+	
+	
 	
 	
 	/**
@@ -275,7 +282,7 @@ public class Configurazione {
 	 * @param ipAddress
 	 * @return
 	 */	
-	private boolean checkIp(String ipAddress){
+	public boolean checkIp(String ipAddress){
 	int contaPuntiniCharAt =0;
 	
 //  condizione che verifica la lunghezza dell'ip come stringa 
@@ -305,6 +312,8 @@ public class Configurazione {
 			}
 		}
 	
+	
+	
 	for (int i=0; i<4; i++){
 		System.out.println("Parametro " + (i+1) + " : " + listaParametri[i]);
 	}
@@ -315,19 +324,22 @@ public class Configurazione {
 	
 		if (Integer.parseInt(listaParametri[i]) >=0 && Integer.parseInt(listaParametri[i]) <= 255){
 			System.out.println("Parametro "+(i+1)+" consistente = "+listaParametri[i]);
-			
+			return true;
 		}
-		else
+		else{
 			System.out.println("Parametro "+(i+1)+" non consistente = "+listaParametri[i]);
+			return false;
+		}
 	}
 //  C fine blocco	
-	return true;
+	
 	}
 	
 	else{
 		System.out.println("numero puntini sbagliato = "+contaPuntiniCharAt);
 		return false;
 	}
+	return true;
 	}
 	
 	else{

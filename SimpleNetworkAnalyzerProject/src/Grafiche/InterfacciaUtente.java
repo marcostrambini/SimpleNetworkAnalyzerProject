@@ -1,4 +1,6 @@
-package it.nlmk.progetto01;
+package Grafiche;
+
+import it.nlmk.progetto01.Configurazione;
 
 import java.awt.BorderLayout;
 import java.awt.Color;

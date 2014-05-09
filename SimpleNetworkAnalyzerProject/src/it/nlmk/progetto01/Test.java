@@ -26,7 +26,7 @@ public class Test {
 //
 //	int differenza = 0;
 //	differenza = (cnfg.getValorePos(4, cnfg.getIpEnd())) - (cnfg.getValorePos(4, cnfg.getIpStart()));
-//	System.out.println("la differenza tra i due ip � : "+differenza);
+//	System.out.println("la differenza tra i due ip : "+differenza);
 //	System.out.println("gli ip considerati sono "+ cnfg.getNumeroDiIpRange());
 ////	System.out.println(ip1 + " e " + ip2 + "  appartengono alla stessa rete: " + cnfg.checkAppartenenzaIpRete(ip1, ip2));
 //		

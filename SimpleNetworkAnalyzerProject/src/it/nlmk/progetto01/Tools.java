@@ -147,6 +147,12 @@ public class Tools {
 		fileDelete.delete();
 	}
 	
+	/**
+	 * metodo che genera il file di configurazione config.ini
+	 * i parametri sono verificate in fase di inserimento tramite il PannelloInserimentoConfig
+	 * @param listaParametri
+	 * @throws IOException
+	 */
 	public void generaConfigIni(String[] listaParametri) throws IOException{
 		String nomeFile = "config.ini";
 		
@@ -173,6 +179,110 @@ public class Tools {
 		scriviFile(nomeFile, "* pwd db");
 		scriviFile(nomeFile, "pwdDb = "+listaParametri[7]);
 		
+	}
+	
+	
+	/**
+	 * metodo che verifica che la lunghezza della stringa ipAddress sia da 7 a 15 caratteri
+	 * @param ipAddress
+	 * @return
+	 */
+	private boolean verificoLughezzaIp(String ipAddress){
+		
+		if (ipAddress.length()>=7 && ipAddress.length()<=15 )
+			return true;
+		else 
+			return false;
+	}
+	
+	/**
+	 * metodo che verifica che ci siano 3 puntini nella stringa ipAddress
+	 * @param ipAddress
+	 * @return
+	 */
+	private boolean verificoPuntiniIp(String ipAddress){
+		int contaPuntiniCharAt =0;
+		for (int i =0; i<ipAddress.length(); i++){
+			if (ipAddress.charAt(i) == '.'){
+				contaPuntiniCharAt++;
+			}
+		}
+		if (contaPuntiniCharAt == 3)
+			return true;
+		else
+			return false;
+	}
+	
+	/**
+	 * metodo che verifica la consistenza di ogni parametro che compone l'ip minimo 0, max 255
+	 * @param ipAddress
+	 * @return
+	 */
+	private boolean verificoConsistenzaValorParametriIp(String ipAddress){
+		String test;
+		
+
+		
+		test = ipAddress.substring(0, ipAddress.indexOf('.'));
+//		System.out.println(test);
+		if (verificoInt255(test)){
+			
+			ipAddress = ipAddress.substring(ipAddress.indexOf('.')+1);
+			test = ipAddress.substring(0, ipAddress.indexOf('.'));
+//			System.out.println(test);
+			if (verificoInt255(test)){
+			
+				ipAddress = ipAddress.substring(ipAddress.indexOf('.')+1);
+				test = ipAddress.substring(0, ipAddress.indexOf('.'));
+//				System.out.println(test);
+				if (verificoInt255(test)){
+					ipAddress = ipAddress.substring(ipAddress.indexOf('.')+1);
+//					System.out.println(ipAddress);
+					return verificoInt255(ipAddress);
+					}else
+						return false;
+			}else
+				return false;
+		}else
+			return false;
+				
+
+	}
+	
+	/**
+	 * metodo che verifica se una stringa trasformata in un numero sia compresa tra 0 e 255
+	 * @param valore
+	 * @return
+	 */
+	private boolean verificoInt255(String valore){
+		if (Integer.parseInt(valore) >=0 && Integer.parseInt(valore) <= 255){
+//			System.out.println("vero");
+			return true;
+		}else{
+//			System.out.println("falso");
+			return false;
+		}
+	}
+	
+	/**
+	 * metodo che verifica la consistenza di un indirizzo ip
+	 * @param ipAddress
+	 * @return
+	 */
+	public boolean checkIp(String ipAddress){
+		if (verificoLughezzaIp(ipAddress)){
+//			System.out.println("lunghezza ok");
+			if(verificoPuntiniIp(ipAddress)){
+//				System.out.println("puntini ok");
+				if (verificoConsistenzaValorParametriIp(ipAddress)){
+//					System.out.println("consistenza parametri");
+					return true;
+			}else
+					return false;
+			}else	
+				return false;
+			}else
+			return false;
 	}
 	
 	
