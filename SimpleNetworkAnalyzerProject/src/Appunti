@@ -3,3 +3,6 @@ Gestione ip:
 
 Gestione oggetto "classificatore":
 - JPanel con: JLabel , menu a tendina (combobox) contenente i gruppi creati in precedenza, testfield per inserire una descrizione
+
+Classe Tools:
+- aggiunti metodi per creazione, lettura e scrittura di file

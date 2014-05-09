@@ -17,13 +17,10 @@ public class Classificatore extends JFrame {
 		String[] elencoIp = conf.getListaIp();
 		
 		setLayout(new GridLayout(1,3));
-		setSize(400, 80);
+		setSize(400, 55);
 	
 		JLabel label = new JLabel(nome);
 		JTextField textField = new JTextField();
-		
-		
-		
 		
 		add(label);
 		add(getComboGruppi(elencoIp));

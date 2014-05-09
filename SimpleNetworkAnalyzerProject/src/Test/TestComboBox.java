@@ -1,4 +1,6 @@
-package it.nlmk.progetto01;
+package Test;
+
+import it.nlmk.progetto01.Classificatore;
 
 public class TestComboBox {
 

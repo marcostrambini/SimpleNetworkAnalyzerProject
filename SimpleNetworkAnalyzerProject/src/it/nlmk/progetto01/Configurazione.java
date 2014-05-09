@@ -141,7 +141,8 @@ public class Configurazione {
 			e.printStackTrace();
 		} finally {
 			try {
-				if (br != null)br.close();
+				if (br != null)
+					br.close();
 			} catch (IOException ex) {
 				ex.printStackTrace();
 			}
