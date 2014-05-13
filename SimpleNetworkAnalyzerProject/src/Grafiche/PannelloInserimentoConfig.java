@@ -12,6 +12,7 @@ import java.awt.event.ActionListener;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 
+import javax.security.auth.Refreshable;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JFrame;
@@ -36,9 +37,9 @@ public class PannelloInserimentoConfig extends JFrame{
 	JTextField textMask = new JTextField();
 	JTextField textGateway = new JTextField();
 	JTextField textIpDb = new JTextField();
-	JTextField textNomeDb = new JTextField();
-	JTextField textUserDb = new JTextField();
-	JTextField textPortaDb = new JTextField();
+	JTextField textNomeDb = new JTextField("no_name");
+	JTextField textUserDb = new JTextField("no_name");
+	JTextField textPwdDb = new JTextField("no_name");
 	
 	JCheckBox cb = new JCheckBox();
 
@@ -46,14 +47,14 @@ public class PannelloInserimentoConfig extends JFrame{
 	
 	
 	JButton button = new JButton("registra");
-
+    JButton buttonRecupera = new JButton("recupera esistente");
 	
 	
 	
-	JPanel panel = new JPanel();
+//	JPanel panel = new JPanel();
 	
 	public PannelloInserimentoConfig(){
-	
+		setTitle("Settaggio config.ini");
 		setSize(300, 300);
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		setLayout(new GridLayout(9,2));
@@ -72,9 +73,9 @@ public class PannelloInserimentoConfig extends JFrame{
 		add(labelUserDb);
 		add(textUserDb);
 		add(labelPortaDb);
-		add(textPortaDb);
+		add(textPwdDb);
 		
-		add(cb);
+		add(buttonRecupera);
 		add(button);
 		
 		ActionListener listener = new ActionListener(){
@@ -115,7 +116,7 @@ public class PannelloInserimentoConfig extends JFrame{
 				
 				listaParametri[5] = textNomeDb.getText();
 				listaParametri[6] = textUserDb.getText();
-				listaParametri[7] = textPortaDb.getText();
+				listaParametri[7] = textPwdDb.getText();
 
 
 
@@ -139,8 +140,42 @@ public class PannelloInserimentoConfig extends JFrame{
 			
 		};
 		
-		button.addActionListener(listener);
+		ActionListener listenerRecupera = new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				
+				
+				try {
+					Tools tools = new Tools();
+					tools.leggiFile("config.ini");
+					Configurazione conf = new Configurazione();
+					
+					textIpStart.setText(conf.getIpStart());
+					textIpEnd.setText(conf.getIpEnd());
+					textMask.setText(conf.getMask());
+					textGateway.setText(conf.getGateway());
+					textIpDb.setText(conf.getIpDb());
+					textNomeDb.setText(conf.getNomeDb());
+					textUserDb.setText(conf.getUserDb());
+					textPwdDb.setText(conf.getPwdDb());
+//					repaint();
+					
+				} catch (IOException e1) {
+					// TODO Auto-generated catch block
+					System.out.println("qualche problema col file!!");
+//					e1.printStackTrace();
+				}
+				
+			
+				
+				
+			}
+		};
 		
+		button.addActionListener(listener);
+		buttonRecupera.addActionListener(listenerRecupera);
 		
 		setLocation(500, 200);
 		setVisible(true);

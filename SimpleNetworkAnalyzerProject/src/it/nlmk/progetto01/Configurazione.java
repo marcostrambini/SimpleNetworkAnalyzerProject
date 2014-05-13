@@ -80,7 +80,7 @@ public class Configurazione {
 			
 				for (int n = 0; n < listaParametri.length -1 ; n++){
 					//					String a;
-//					System.out.println("ciclo n°: "+n);
+//					System.out.println("ciclo nï¿½: "+n);
 					if (nomeFile.get(n).contains("*")){
 //						System.out.println("la riga "+ n + " contiene *");
 					}else{
@@ -96,45 +96,54 @@ public class Configurazione {
 	
 
 
-						/* recupero ipStart */
-						if(parametro.compareTo("ipStart")==0){    
-							setIpStart(valpar);
-     					}
-//
-						/* recupero ipEnd  */
-						if(parametro.compareTo("ipEnd")==0){    
-							setIpEnd(valpar);
-						}
-//
+					/* recupero ipStart */
+					if(parametro.compareTo("ipStart")==0)   
+						setIpStart(valpar);
+//					else 
+//						setIpStart("0.0.0.0");
+
+				
+					/* recupero ipEnd  */
+					if(parametro.compareTo("ipEnd")==0)  
+						setIpEnd(valpar);
+//						else 
+//							setIpEnd("0.0.0.0");
+						//
 						/* recupero mask  */
-						if(parametro.compareTo("mask")==0){    
+						if(parametro.compareTo("mask")==0) 
 							setMask(valpar);
-						}
-						
+//						else 
+//							setMask("0.0.0.0");
+
 						/* recupero gateway  */
-						if(parametro.compareTo("gateway")==0){    
+						if(parametro.compareTo("gateway")==0)   
 							setGateway(valpar);
-						}
-						
+//						else 
+//							setGateway("0.0.0.0");
+
 						/* recupero ip database  */
-						if(parametro.compareTo("ipDb")==0){    
+						if(parametro.compareTo("ipDb")==0)   
 							setIpDb(valpar);
-						}
-						
+//						else 
+//							setIpDb("0.0.0.0");
+
 						/* recupero nome Db  */
-						if(parametro.compareTo("nomeDb")==0){    
+						if(parametro.compareTo("nomeDb")==0)    
 							setNomeDb(valpar);
-						}
-						
+//						else 
+//							setNomeDb(null);
+
 						/* recupero user Db  */
-						if(parametro.compareTo("userDb")==0){    
+						if(parametro.compareTo("userDb")==0)   
 							setUserDb(valpar);
-						}
-						
-//						/* recupero pwd Db  */
-						if(parametro.compareTo("pwdDb")==0){    
+//						else 
+//							setUserDb("no name");
+
+						//						/* recupero pwd Db  */
+						if(parametro.compareTo("pwdDb")==0)  
 							setPwdDb(valpar);
-						}
+//						else 
+//							setPwdDb("no name");
 //
 //					}
 				}

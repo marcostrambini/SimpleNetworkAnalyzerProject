@@ -163,21 +163,52 @@ public class Tools {
 		scriviFile(nomeFile, "* File di configurazione *");
 		scriviFile(nomeFile, "**************************");
 		scriviFile(nomeFile, "* ip address start");
-		scriviFile(nomeFile, "ipStart = "+listaParametri[0]);
+		if (listaParametri[0] != null)
+			scriviFile(nomeFile, "ipStart = "+listaParametri[0]);
+		else
+			scriviFile(nomeFile, "ipStart = 0.0.0.0");	
+		
 		scriviFile(nomeFile, "* ip address end");
+		if (listaParametri[1] != null)
 		scriviFile(nomeFile, "ipEnd = "+listaParametri[1]);
+		else
+			scriviFile(nomeFile, "ipEnd = 0.0.0.0");	
 		scriviFile(nomeFile, "* subnet mask");
+		
+		if (listaParametri[2] != null)
 		scriviFile(nomeFile, "mask = "+listaParametri[2]);
+		else
+			scriviFile(nomeFile, "mask = 0.0.0.0");	
 		scriviFile(nomeFile, "* gateway");
+		
+		if (listaParametri[3] != null)
 		scriviFile(nomeFile, "gateway = "+listaParametri[3]);
+		else
+			scriviFile(nomeFile, "gateway = 0.0.0.0");	
 		scriviFile(nomeFile, "* ip db");
+		
+		if (listaParametri[4] != null)
 		scriviFile(nomeFile, "ipDb = "+listaParametri[4]);
+		else
+			scriviFile(nomeFile, "ipDb = 0.0.0.0");	
 		scriviFile(nomeFile, "* Nome db");
+		
+		if (listaParametri[5] != null)
 		scriviFile(nomeFile, "nomeDb = "+listaParametri[5]);
+		else
+			scriviFile(nomeFile, "nomeDb = no_name");	
 		scriviFile(nomeFile, "* user Db");
+		
+		if (listaParametri[6] != null)
 		scriviFile(nomeFile, "userDb = "+listaParametri[6]);
+		else
+			scriviFile(nomeFile, "userDb = no_name");	
 		scriviFile(nomeFile, "* pwd db");
+		
+		if (listaParametri[7] != null)
 		scriviFile(nomeFile, "pwdDb = "+listaParametri[7]);
+		else
+			scriviFile(nomeFile, "pwdDb = no_name");	
 		
 	}
 	

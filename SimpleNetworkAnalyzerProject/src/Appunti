@@ -9,3 +9,6 @@ Classe Tools:
 
 Classe Coloratore:
 - Classe che contiene metodi per la colorazione di oggetti JButton, JTextField
+
+13/5/14
+fare metodo che recupera  la configurazione su pannello per poi modificarla
