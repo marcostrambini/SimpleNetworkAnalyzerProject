@@ -1,4 +1,6 @@
-package it.nlmk.progetto01;
+package Grafiche;
+
+import it.nlmk.progetto01.Configurazione;
 
 import java.awt.GridLayout;
 
@@ -13,7 +15,7 @@ public class Classificatore extends JFrame {
 	public Classificatore(String nome){
 		this.nome = nome;
 		Configurazione conf = new Configurazione();
-		conf.verificoParametriIp();
+		//conf.verificoParametriIp();
 		String[] elencoIp = conf.getListaIp();
 		
 		setLayout(new GridLayout(1,3));

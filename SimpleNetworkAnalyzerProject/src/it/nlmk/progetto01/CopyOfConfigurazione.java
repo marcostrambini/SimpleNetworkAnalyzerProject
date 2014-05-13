@@ -5,224 +5,101 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.StringTokenizer;
 
-public class Configurazione {
+public class CopyOfConfigurazione {
 
-	private String mask;
-	private String ipStart ;
-	private String gateway;
-	private String ipEnd;
-	private String ipDb;
-	private String nomeDb;
-	private String userDb;
-	private String pwdDb;
-
-
+	private  String mask;
+	private  String ipStart;
+	private  String gateway;
+	private  String ipEnd;
+	Tools tools = new Tools();
+	
 
 	/**
 	 * @param args
-	 * @throws IOException 
 	 */
-	public Configurazione() throws IOException{
-				
-		Tools tools = new Tools();
-		String nomeFile = "config.ini";
-		ArrayList<String> fileLetto;
-
-		checkFile(nomeFile);
-		fileLetto = tools.leggiFileRitorna(nomeFile);
-//		System.out.println("Dimensione del file di configurazione: "+fileLetto.size());
-		getConfig(fileLetto);
-		
-//		for(int i = 0; i<fileLetto.size();i++)	
-//			System.out.println(fileLetto.get(i));
-//		System.out.println("fine costruttore Configurazione()");
-
+	public CopyOfConfigurazione(){
+	
 	}
-
-
-	//	/**
-	//	 * Funzione che prende in carico le stringhe ip e ne verifica la consistenza
-	//	 */
-	//	public void verificoParametriIp(){
-	//		String[] array = getConfig(readFileConfig());
-	//		int numFalse =0;
-	//		for (int i =0; i<array.length; i++){
-	//			System.out.println("ip " + (i+1) + " " + array[i]);
-	//			if(!checkIp(array[i]))
-	//				numFalse++;
-	//			
-	//			
-	//		}
-	//		if (numFalse>0)
-	//			System.out.println("Il file di configurazione presenta degli errori negli ip");
-	//	}
-	//	
-
+		
+	
+//	/**
+//	 * Funzione che prende in carico le stringhe ip e ne verifica la consistenza
+//	 */
+//	public void verificoParametriIp(){
+//		String[] array = getConfig(readFileConfig());
+//		int numFalse =0;
+//		for (int i =0; i<array.length; i++){
+//			System.out.println("ip " + (i+1) + " " + array[i]);
+//			if(!checkIp(array[i]))
+//				numFalse++;
+//			
+//			
+//		}
+//		if (numFalse>0)
+//			System.out.println("Il file di configurazione presenta degli errori negli ip");
+//	}
+//	
+	
 
 	/**
 	 * Funzione che dato il file di configurazione, salva nelle variabili le stringhe
 	 * associate
-	 * @return 
-	 * @throws IOException 
 	 */
-	public void getConfig(ArrayList<String> nomeFile) 	{
-
-		String[] listaParametri = new String[nomeFile.size()];
+	public String[] getConfig(String[] arrconf)	{
+		arrconf = readFileConfig();
+		String[] arrayParametri = new String[4];
 		String parametro;
 		String valpar;
-		String uguale;
-		String riga;
-//		System.out.println("all'interno del getConfig il size() e': "+nomeFile.size());
-		if (nomeFile.size() > 1){
-			
-				for (int n = 0; n < listaParametri.length -1 ; n++){
-					//					String a;
-//					System.out.println("ciclo n°: "+n);
-					if (nomeFile.get(n).contains("*")){
-//						System.out.println("la riga "+ n + " contiene *");
+		if (arrconf.length > 1){
+			try{
+				for (int n = 0; n < arrconf.length ; n++){
+					if (arrconf[n]== null ){ 
 					}else{
-					
-					
-					
-					StringTokenizer st = new StringTokenizer(nomeFile.get(n));
-					parametro = st.nextToken();
-					st.nextToken();
-					valpar = st.nextToken();
-//					System.out.println("Parametro: "+parametro);
-//					System.out.println("Valore: "+valpar);
-	
 
+						StringTokenizer st = new StringTokenizer(arrconf[n]);
+						parametro = st.nextToken(); //acquisisco il primo token (codice del parametro)
+						st.nextToken(); //secondo token (simbolo =)
+						valpar = st.nextToken(); //acquisisco il terzo token (il valore del parametro)
+						
+//						System.out.println(parametro + "="+valpar);
 
 						/* recupero ipStart */
 						if(parametro.compareTo("ipStart")==0){    
-							setIpStart(valpar);
-     					}
-//
+							ipStart = valpar;
+							arrayParametri[0]= ipStart;
+						}
+
 						/* recupero ipEnd  */
 						if(parametro.compareTo("ipEnd")==0){    
-							setIpEnd(valpar);
+							ipEnd  = valpar;
+							arrayParametri[1]= ipEnd;
 						}
-//
+
 						/* recupero mask  */
 						if(parametro.compareTo("mask")==0){    
-							setMask(valpar);
+							mask  = valpar;
+							arrayParametri[2]= mask;
 						}
-						
 						/* recupero gateway  */
 						if(parametro.compareTo("gateway")==0){    
-							setGateway(valpar);
+							gateway  = valpar;
+							arrayParametri[3]= gateway;
 						}
-						
-						/* recupero ip database  */
-						if(parametro.compareTo("ipDb")==0){    
-							setIpDb(valpar);
-						}
-						
-						/* recupero nome Db  */
-						if(parametro.compareTo("nomeDb")==0){    
-							setNomeDb(valpar);
-						}
-						
-						/* recupero user Db  */
-						if(parametro.compareTo("userDb")==0){    
-							setUserDb(valpar);
-						}
-						
-//						/* recupero pwd Db  */
-						if(parametro.compareTo("pwdDb")==0){    
-							setPwdDb(valpar);
-						}
-//
-//					}
+
+
+					}
 				}
-			
+			}catch (Exception ex){
+				System.err.println("Errore file di configurazione");
 			}
-		}
 
 		}
 
-		
+//		System.out.println(ipStart + " " + ipEnd + " " + mask + " " + gateway);
 
-	public String getMask() {
-		return mask;
-	}
-
-
-	private void setMask(String mask) {
-		this.mask = mask;
-	}
-
-
-	public String getIpStart() {
-		return ipStart;
-	}
-
-
-	private void setIpStart(String ipStart) {
-		this.ipStart = ipStart;
-	}
-
-
-	public String getGateway() {
-		return gateway;
-	}
-
-
-	private void setGateway(String gateway) {
-		this.gateway = gateway;
-	}
-
-
-	public String getIpEnd() {
-		return ipEnd;
-	}
-
-
-	private void setIpEnd(String ipEnd) {
-		this.ipEnd = ipEnd;
-	}
-
-
-	public String getIpDb() {
-		return ipDb;
-	}
-
-
-	private void setIpDb(String ipDb) {
-		this.ipDb = ipDb;
-	}
-
-
-	public String getNomeDb() {
-		return nomeDb;
-	}
-
-
-	private void setNomeDb(String nomeDb) {
-		this.nomeDb = nomeDb;
-	}
-
-
-	public String getUserDb() {
-		return userDb;
-	}
-
-
-	private void setUserDb(String userDb) {
-		this.userDb = userDb;
-	}
-
-
-	public String getPwdDb() {
-		return pwdDb;
-	}
-
-
-	private void setPwdDb(String pwdDb) {
-		this.pwdDb = pwdDb;
+		return arrayParametri;
 	}
 
 
@@ -231,17 +108,87 @@ public class Configurazione {
 	/**
 	 * Funzione che controlla se esiste il file di configurazione
 	 */
-	public void checkFile(String nomeFile){
-		File f = new File(nomeFile);
+	public void checkFile(){
+		File f = new File("config.ini");
 		if (f.exists())
 			System.out.println("Il file esiste");
 		else
 			System.out.println("File di configurazione mancante");
 	}
 	
-     
+	
+	
+	
+	
+	/**
+	 * Funzione che legge tutto il file di configurazione e lo salva riga per riga in
+	 * un array di stringhe
+	 * @return
+	 */
+	public String[] readFileConfig() {
+		BufferedReader br = null;
+		File f = new File("config.ini");
+		String[] cnfg = new String[20]; 
+		try {
+			String sCurrentLine;
+			br = new BufferedReader(new FileReader(f));
+			int o = 0;
 
+			while ((sCurrentLine = br.readLine()) != null) {
+//				System.out.println(sCurrentLine.substring(0,1));
+				String str = sCurrentLine.substring(0,1);
 
+				if (str.compareTo("*")!=0){
+					o ++;
+					cnfg[o]=sCurrentLine;
+				}
+			}
+
+		} catch (IOException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if (br != null)
+					br.close();
+			} catch (IOException ex) {
+				ex.printStackTrace();
+			}
+		}
+		return cnfg;
+	}         
+
+	/**
+	 * Funzione che ritorna l'ip iniziale
+	 * @return
+	 */
+	public String getIpStart(){
+		return ipStart;
+	}
+
+	/**
+	 * Funzione che ritorna l'ip finale
+	 * @return
+	 */
+	public String getIpEnd(){
+		return ipEnd;
+	}
+
+	/**
+	 * Funzione che ritorna la maschera di sottorete
+	 * @return
+	 */
+	public String getMask(){
+		return mask;
+	}
+
+	/**
+	 * Funzione che ritorna il gateway
+	 * @return
+	 */
+	public String getGateway(){
+		return gateway;
+	}
+	
 	
 	/**
 	 * Funzione che ritorna le cifre dell'ip data la posizione da 1 a 4

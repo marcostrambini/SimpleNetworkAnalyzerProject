@@ -4,6 +4,7 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
 
+import it.nlmk.progetto01.Configurazione;
 import it.nlmk.progetto01.Tools;
 
 public class TestTools {
@@ -58,6 +59,19 @@ public class TestTools {
 		System.out.println("4: ---------------------------------------");
 	
 		System.out.println(tools.checkIp(ipAddress));
+		
+		Configurazione conf = new Configurazione();
+		tools.leggiFile("config.ini");
+		System.out.println(conf.getIpStart());
+		System.out.println(conf.getIpEnd());
+		System.out.println(conf.getMask());
+		System.out.println(conf.getGateway());
+		System.out.println(conf.getIpDb());
+		System.out.println(conf.getNomeDb());
+		System.out.println(conf.getUserDb());
+		System.out.println(conf.getPwdDb());
+//		
+		
 	}
 
 }

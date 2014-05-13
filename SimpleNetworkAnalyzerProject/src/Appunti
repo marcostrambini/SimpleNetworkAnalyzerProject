@@ -6,3 +6,6 @@ Gestione oggetto "classificatore":
 
 Classe Tools:
 - aggiunti metodi per creazione, lettura e scrittura di file
+
+Classe Coloratore:
+- Classe che contiene metodi per la colorazione di oggetti JButton, JTextField

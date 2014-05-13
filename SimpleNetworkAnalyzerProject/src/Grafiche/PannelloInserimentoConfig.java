@@ -83,7 +83,7 @@ public class PannelloInserimentoConfig extends JFrame{
 			public void actionPerformed(ActionEvent arg0) {
 				// TODO Auto-generated method stub
 				Tools tools = new Tools();
-				Configurazione conf = new Configurazione();
+//				Configurazione conf = new Configurazione();
 				Coloratore coloratore = new Coloratore();
 				String[] listaParametri = new String[8];
 				

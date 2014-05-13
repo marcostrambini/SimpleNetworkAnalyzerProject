@@ -167,9 +167,9 @@ public class Tools {
 		scriviFile(nomeFile, "* ip address end");
 		scriviFile(nomeFile, "ipEnd = "+listaParametri[1]);
 		scriviFile(nomeFile, "* subnet mask");
-		scriviFile(nomeFile, "ipEnd = "+listaParametri[2]);
+		scriviFile(nomeFile, "mask = "+listaParametri[2]);
 		scriviFile(nomeFile, "* gateway");
-		scriviFile(nomeFile, "ipEnd = "+listaParametri[3]);
+		scriviFile(nomeFile, "gateway = "+listaParametri[3]);
 		scriviFile(nomeFile, "* ip db");
 		scriviFile(nomeFile, "ipDb = "+listaParametri[4]);
 		scriviFile(nomeFile, "* Nome db");
