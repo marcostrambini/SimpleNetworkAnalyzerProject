@@ -4,11 +4,15 @@ import it.nlmk.progetto01.Configurazione;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
 import java.awt.Label;
+import java.awt.LayoutManager;
 import java.awt.Toolkit;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
@@ -56,6 +60,7 @@ public InterfacciaUtente (){
 	setTitle("Simply Network Analyzer Project");
 //	setSize(larghezza, altezza);
 	setSize(larghezzaFrame, altezzaFrame);
+	
 	setResizable(false);
 	
 //	setLayout(new BorderLayout());
@@ -65,6 +70,7 @@ public InterfacciaUtente (){
 	
 	add(creaPannelloComandi(larghezzaFrame, altezzaFrame ));
 	add(creaPannelloUtente(larghezzaFrame, altezzaFrame));
+	
 	setDefaultCloseOperation(EXIT_ON_CLOSE);
 	setVisible(true);
 	
@@ -72,11 +78,11 @@ public InterfacciaUtente (){
 }
 
 
-private void test(){
-  Configurazione conf = new Configurazione();
-  conf.verificoParametriIp();
-  String[] lista = conf.getListaIp();
-}
+//private void test(){
+//  Configurazione conf = new Configurazione();
+//  conf.verificoParametriIp();
+//  String[] lista = conf.getListaIp();
+//}
 
 
 /**
@@ -86,6 +92,8 @@ private void test(){
 private JPanel creaPannelloComandi(int larghezzaFrame, int altezzaFrame){
 	int larghezzaPannelloComandi = ((larghezzaFrame / 10) * 2);
 	JPanel pannelloComandi = new JPanel();
+	JButton buttonConfig = new JButton("Configurazione");
+	
 	pannelloComandi.setLayout(new GridLayout(20,1));
 //	pannelloComandi.setSize(600, altezza);
 	pannelloComandi.setBorder(BorderFactory.createLineBorder(Color.BLUE,1));
@@ -93,10 +101,24 @@ private JPanel creaPannelloComandi(int larghezzaFrame, int altezzaFrame){
 	pannelloComandi.setBackground(Color.WHITE);
 	
 	//test aggiunta bottoni*******************
-	for (int i=0; i<5; i++)
-		pannelloComandi.add(creaBottoneMenu("pippo"+i));
+//	for (int i=0; i<5; i++)
+//		pannelloComandi.add(creaBottoneMenu("pippo"+i));
 	//****************************************
+	pannelloComandi.add(buttonConfig);
+	ActionListener listenerConfig = new ActionListener() {
 		
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			PannelloInserimentoConfig pannelloInserimento = new PannelloInserimentoConfig();
+			
+			
+		}
+	};
+	
+	buttonConfig.addActionListener(listenerConfig);
+	
+	
+	
 	
 	
 	return pannelloComandi;
@@ -116,16 +138,16 @@ private JPanel creaPannelloUtente(int larghezzaFrame, int altezzaFrame){
 	pannelloUtente.setBounds(((larghezzaFrame / 10) * 2)-1,0 , larghezzaPannelloUtente, altezzaFrame);
 	pannelloUtente.setBackground(Color.WHITE);
 	
-    Configurazione conf = new Configurazione();
-   
-    
-    conf.verificoParametriIp();
-    String[] lista = conf.getListaIp();
-    
+//    Configurazione conf = new Configurazione();
+//   
+//    
+//    conf.verificoParametriIp();
+//    String[] lista = conf.getListaIp();
+//    
    
 	//test aggiunta bottoni*******************
-	for (int i=0; i<lista.length; i++)
-		pannelloUtente.add(creaBottoneMenu(lista[i]));
+//	for (int i=0; i<lista.length; i++)
+//		pannelloUtente.add(creaBottoneMenu(lista[i]));
 //	//****************************************
 	
 	

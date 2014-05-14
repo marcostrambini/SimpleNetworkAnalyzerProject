@@ -56,7 +56,7 @@ public class PannelloInserimentoConfig extends JFrame{
 	public PannelloInserimentoConfig(){
 		setTitle("Settaggio config.ini");
 		setSize(300, 300);
-		setDefaultCloseOperation(EXIT_ON_CLOSE);
+		setDefaultCloseOperation(HIDE_ON_CLOSE);
 		setLayout(new GridLayout(9,2));
 		add(labelIpStart);
 		add(textIpStart);
