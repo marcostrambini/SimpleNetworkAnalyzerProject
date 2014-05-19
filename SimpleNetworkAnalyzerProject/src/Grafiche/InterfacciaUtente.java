@@ -95,7 +95,7 @@ private JPanel creaPannelloComandi(int larghezzaFrame, int altezzaFrame){
 	int larghezzaPannelloComandi = ((larghezzaFrame / 10) * 2);
 	final JPanel pannelloComandi = new JPanel();
 	JButton buttonConfig = new JButton("Configurazione");
-	JButton buttonTest = new JButton("Test listener");
+	JButton buttonGestGroups = new JButton("Gestione Gruppi");
 	
 	pannelloComandi.setLayout(new GridLayout(20,1));
 //	pannelloComandi.setSize(600, altezza);
@@ -108,13 +108,13 @@ private JPanel creaPannelloComandi(int larghezzaFrame, int altezzaFrame){
 //		pannelloComandi.add(creaBottoneMenu("pippo"+i));
 	//****************************************
 	pannelloComandi.add(buttonConfig);
-	pannelloComandi.add(buttonTest);
+	pannelloComandi.add(buttonGestGroups);
 	
-	ActionListener listenerTest = new ActionListener() {
+	ActionListener listenerGestGroupst = new ActionListener() {
 		
 		@Override
 		public void actionPerformed(ActionEvent e) {
-			ListenerTest lt = new ListenerTest(creaPannelloUtente(300, 300));
+			PannelloGestioneGruppi pgc = new PannelloGestioneGruppi();
 		}
 	};
 	
@@ -122,13 +122,14 @@ private JPanel creaPannelloComandi(int larghezzaFrame, int altezzaFrame){
 		
 		@Override
 		public void actionPerformed(ActionEvent e) {
-		JPanel pippo = creaPannelloUtente(300, 300);
-		ListenerTest test = new ListenerTest(pippo);	
+			
+			PannelloInserimentoConfig pic = new PannelloInserimentoConfig();
+	
 		}
 	};
 	
 	buttonConfig.addActionListener(listenerConfig);
-	buttonTest.addActionListener(listenerTest);
+	buttonGestGroups.addActionListener(listenerGestGroupst);
 	
 	
 	
