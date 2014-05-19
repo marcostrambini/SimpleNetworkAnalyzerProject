@@ -21,6 +21,8 @@ import javax.swing.JLabel;
 import javax.swing.JMenu;
 import javax.swing.JPanel;
 
+import Listener.ListenerTest;
+
 
 
 
@@ -91,8 +93,9 @@ public InterfacciaUtente (){
  */
 private JPanel creaPannelloComandi(int larghezzaFrame, int altezzaFrame){
 	int larghezzaPannelloComandi = ((larghezzaFrame / 10) * 2);
-	JPanel pannelloComandi = new JPanel();
+	final JPanel pannelloComandi = new JPanel();
 	JButton buttonConfig = new JButton("Configurazione");
+	JButton buttonTest = new JButton("Test listener");
 	
 	pannelloComandi.setLayout(new GridLayout(20,1));
 //	pannelloComandi.setSize(600, altezza);
@@ -105,18 +108,27 @@ private JPanel creaPannelloComandi(int larghezzaFrame, int altezzaFrame){
 //		pannelloComandi.add(creaBottoneMenu("pippo"+i));
 	//****************************************
 	pannelloComandi.add(buttonConfig);
+	pannelloComandi.add(buttonTest);
+	
+	ActionListener listenerTest = new ActionListener() {
+		
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			ListenerTest lt = new ListenerTest(creaPannelloUtente(300, 300));
+		}
+	};
+	
 	ActionListener listenerConfig = new ActionListener() {
 		
 		@Override
 		public void actionPerformed(ActionEvent e) {
-			PannelloInserimentoConfig pannelloInserimento = new PannelloInserimentoConfig();
-			
-			
+		JPanel pippo = creaPannelloUtente(300, 300);
+		ListenerTest test = new ListenerTest(pippo);	
 		}
 	};
 	
 	buttonConfig.addActionListener(listenerConfig);
-	
+	buttonTest.addActionListener(listenerTest);
 	
 	
 	
@@ -131,7 +143,7 @@ private JPanel creaPannelloComandi(int larghezzaFrame, int altezzaFrame){
  */
 private JPanel creaPannelloUtente(int larghezzaFrame, int altezzaFrame){
 	int larghezzaPannelloUtente = ((larghezzaFrame / 10) * 8);
-	JPanel pannelloUtente = new JPanel();
+	final JPanel pannelloUtente = new JPanel();
 	pannelloUtente.setLayout(new GridLayout(20,15));
 //	pannelloUtente.setSize(600, 700);
 	pannelloUtente.setBorder(BorderFactory.createLineBorder(Color.BLUE, 1));
