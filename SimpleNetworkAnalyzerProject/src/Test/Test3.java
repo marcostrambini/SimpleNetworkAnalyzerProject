@@ -1,6 +1,9 @@
 package Test;
 
+import java.io.IOException;
+
 import it.nlmk.progetto01.FrameControls;
+import it.nlmk.progetto01.Tools;
 
 import javax.swing.JFrame;
 
@@ -10,15 +13,12 @@ public class Test3 {
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-		//test del pannello al frame
-		
-		FrameControls frame = new FrameControls();
-
-		
-		
-		frame.setVisible(true);
-		
+		Tools tools = new Tools();
+		try {
+			tools.leggiFile("classificazione.csv");
+		} catch (IOException e) {
+			System.out.println("problemi di lettura file");
+		}
 
 	}
 

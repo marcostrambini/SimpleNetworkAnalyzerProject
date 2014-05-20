@@ -96,6 +96,8 @@ private JPanel creaPannelloComandi(int larghezzaFrame, int altezzaFrame){
 	final JPanel pannelloComandi = new JPanel();
 	JButton buttonConfig = new JButton("Configurazione");
 	JButton buttonGestGroups = new JButton("Gestione Gruppi");
+	final JButton button01 = new JButton();
+	final JButton button02 = new JButton();
 	
 	pannelloComandi.setLayout(new GridLayout(20,1));
 //	pannelloComandi.setSize(600, altezza);
@@ -109,11 +111,19 @@ private JPanel creaPannelloComandi(int larghezzaFrame, int altezzaFrame){
 	//****************************************
 	pannelloComandi.add(buttonConfig);
 	pannelloComandi.add(buttonGestGroups);
+	pannelloComandi.add(button01);
+	pannelloComandi.add(button02);
+	
+	button01.setVisible(false);
+	button02.setVisible(false);
 	
 	ActionListener listenerGestGroupst = new ActionListener() {
 		
 		@Override
 		public void actionPerformed(ActionEvent e) {
+			button02.setText("click sul 2");
+			button02.setVisible(true);
+			button01.setVisible(false);
 			PannelloGestioneGruppi pgc = new PannelloGestioneGruppi();
 		}
 	};
@@ -122,15 +132,33 @@ private JPanel creaPannelloComandi(int larghezzaFrame, int altezzaFrame){
 		
 		@Override
 		public void actionPerformed(ActionEvent e) {
-			
+			button01.setText("click sul primo");
+			button01.setVisible(true);
+			button02.setVisible(false);
 			PannelloInserimentoConfig pic = new PannelloInserimentoConfig();
 	
 		}
 	};
 	
+	
+	ActionListener listenerGenerico = new ActionListener() {
+		
+		@Override
+		public void actionPerformed(ActionEvent ev) {
+			// TODO Auto-generated method stub
+			JButton source = (JButton)ev.getSource();
+			if(source == button02){
+				Classificatore combo = new Classificatore("pippo");
+				combo.setVisible(true);
+			}
+		}
+	};
+	
+	
+	
 	buttonConfig.addActionListener(listenerConfig);
 	buttonGestGroups.addActionListener(listenerGestGroupst);
-	
+	button02.addActionListener(listenerGenerico);
 	
 	
 	

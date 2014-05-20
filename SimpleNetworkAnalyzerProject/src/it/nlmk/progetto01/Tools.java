@@ -81,6 +81,7 @@ public class Tools {
 	 * @throws FileNotFoundException
 	 */
 	public void scriviFile(String nomeFile, String[] parole) throws FileNotFoundException{
+		
 		FileOutputStream fos = new FileOutputStream(nomeFile, true);
 		PrintWriter scrivi = new PrintWriter(fos);
 		for (int i=0; i<parole.length; i++)
@@ -122,7 +123,7 @@ public class Tools {
 			
 			arrayLetto.add(sCurrentLine);
 		}
-		arrayLetto.add("FINE");
+//		arrayLetto.add("FINE");
 		fr.close();
 		return arrayLetto;
 	}
@@ -316,5 +317,17 @@ public class Tools {
 			return false;
 	}
 	
+	/**
+	 * metodo che copia il contenuto di un ArrayList in un Array di stringhe adeguatamente dimensionato
+	 * @param arrayList
+	 * @return
+	 */
+	public String[] listToArray(ArrayList<String> arrayList){
+		String[] array = new String[arrayList.size()];
+		for(int i=0; i<arrayList.size();i++)
+			array[i] = arrayList.get(i);
+		
+		return array;
+	}
 	
 }
