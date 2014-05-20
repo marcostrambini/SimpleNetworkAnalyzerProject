@@ -1,17 +1,24 @@
 package it.nlmk.progetto01;
 
 import java.io.BufferedReader;
+
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.File;
 import java.io.PrintWriter;
-import java.io.Reader;
+//import java.io.Reader;
 import java.net.InetAddress;
-import java.net.UnknownHostException;
+//import java.net.UnknownHostException;
 import java.util.ArrayList;
 
+
+/**
+ * Classe di utilita'
+ * @author marcostrambini
+ *
+ */
 public class Tools {
 
 	/**
@@ -75,7 +82,7 @@ public class Tools {
 	}
 
 	/**
-	 * metodo che scrive una array di sctringhe su file
+	 * metodo che scrive una array di stringhe su file
 	 * @param nomeFile
 	 * @param parole
 	 * @throws FileNotFoundException
@@ -89,6 +96,7 @@ public class Tools {
 		
 		scrivi.close();
 	}
+	
 	
 	/**
 	 * metodo che legge un file e ne stampa il contenuto riga per riga nel terminale
@@ -107,7 +115,17 @@ public class Tools {
 	}
 	
 	/**
-	 * metodo che legge il contenuto di un file e lo restituisce in un array di stringhe
+	 * metodo che verifica l'esistenza di un file passandone il nome come parametro
+	 * @param nomeFile
+	 * @return
+	 */
+	public boolean esisteFile(String nomeFile){
+		File file = new File(nomeFile);
+		return (file.exists());
+	}
+	
+	/**
+	 * metodo che legge il contenuto di un file e lo restituisce in un Array List di stringhe
 	 * @param nomeFile
 	 * @return
 	 * @throws IOException
