@@ -86,8 +86,15 @@ public class PannelloClassificatore extends JFrame{
 			String[] listaTxt = new String[listaClassificatori.length];
 			Tools tools = new Tools();
 			for(int i=0; i<listaClassificatori.length;i++){
-			listaCsv[i] = (listaClassificatori[i].getLabel() + ","+ listaClassificatori[i].getValComboBox() + "," + listaClassificatori[i].getTextField() );
-			listaTxt[i] = (listaClassificatori[i].getLabel() + " - "+ listaClassificatori[i].getValComboBox() + " - " + listaClassificatori[i].getTextField() );
+			String textFieldVal = listaClassificatori[i].getTextField();
+			if (!listaClassificatori[i].getTextField().isEmpty())
+				textFieldVal = listaClassificatori[i].getTextField();
+			else
+				textFieldVal = "non_identificato";
+			
+				
+			listaCsv[i] = (listaClassificatori[i].getLabel() + ","+ listaClassificatori[i].getValComboBox() + "," + textFieldVal);
+			listaTxt[i] = (listaClassificatori[i].getLabel() + " - "+ listaClassificatori[i].getValComboBox() + " - " + textFieldVal);
 			
 			}
 			try {

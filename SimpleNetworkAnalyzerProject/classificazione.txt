@@ -1,4 +1,11 @@
-10.0.119.10 - paperino - 
-10.0.119.11 - escludi - 
-10.0.119.12 - escludi - 
-10.0.119.13 - escludi - 
+10.0.119.10 - escludi - escluso
+10.0.119.11 - escludi - esclusoancora
+10.0.119.12 - pippo - pippo1
+10.0.119.13 - pluto - pluto1
+10.0.119.14 - pluto - pluto2
+10.0.119.15 - paperino - paper1
+10.0.119.16 - minni - minni1
+10.0.119.17 - topolino - topo1
+10.0.119.18 - pippo - pippo3
+10.0.119.19 - escludi - non_identificato
+10.0.119.20 - escludi - non_identificato
