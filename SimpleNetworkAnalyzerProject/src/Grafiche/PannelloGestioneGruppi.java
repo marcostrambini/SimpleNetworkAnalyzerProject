@@ -79,6 +79,7 @@ public class PannelloGestioneGruppi extends JFrame{
 				Tools tools = new Tools();
 				
 				ArrayList<String> listaArray = new ArrayList<String>();
+				listaArray.add("escludi");
 				if (!textGp01.getText().isEmpty())
 					listaArray.add(textGp01.getText());
 				if (!textGp02.getText().isEmpty())

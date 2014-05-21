@@ -15,7 +15,7 @@ public class Test {
 		
 
 	Configurazione cnfg =  new Configurazione();
-	cnfg.verificoParametriIp();
+	
 //	String ip1 = "192.168.5.1";
 ////	String ip2 = "192.168.5.10";
 //	

@@ -98,7 +98,7 @@ public class PannelloClassificatore extends JFrame{
 				tools.scriviFile("classificazione.csv", listaCsv);
 				tools.scriviFile("classificazione.txt", listaTxt);
 				
-				labelInfo.setText("File .csv e .txt creat1!");
+				labelInfo.setText("File .csv e .txt creati!");
 				
 				tools.leggiFile("classificazione.txt");
 				
