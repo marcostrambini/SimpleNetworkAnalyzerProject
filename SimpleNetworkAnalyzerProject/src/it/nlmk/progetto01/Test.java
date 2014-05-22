@@ -71,6 +71,7 @@ public class Test {
 	
 	System.out.println("Timeoute = "+time);
 	
+	
 	while (par < listaip.length){
 //	System.out.println("Ping di "+listaip[par]+" result: " + pingatore.ping(listaip[par]));
 	
