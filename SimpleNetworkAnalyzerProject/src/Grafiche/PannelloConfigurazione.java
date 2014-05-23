@@ -54,7 +54,7 @@ public class PannelloConfigurazione extends JFrame {
 		this.add(buttonGestGruppi);
 		this.add(buttonClassicazione);
 
-		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
+		this.setDefaultCloseOperation(HIDE_ON_CLOSE);
 		this.setVisible(true);
 	}
 

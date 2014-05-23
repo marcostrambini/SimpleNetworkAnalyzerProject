@@ -15,7 +15,7 @@ public class Flags {
 		Tools tools = new Tools();
 		String nomeFile = "flags.txt";
 		
-		if(tools.esisteFile(nomeFile))
+		if(!tools.esisteFile(nomeFile))
 			try {
 				tools.clearFile(nomeFile);
 				tools.creaFile(nomeFile);
@@ -27,7 +27,7 @@ public class Flags {
 		
 	}
 	
-	public void aggiornaFlag(String flag, String value){
+	public static void aggiornaFlag(String flag, String value){
 		
 		Tools tools = new Tools();
 		String nomeFile = "flags.txt";
@@ -102,7 +102,7 @@ public class Flags {
 //	}
 	
 	
-	public boolean getStatoFlag(String nomeFlag) throws IOException{
+	public static boolean getStatoFlag(String nomeFlag) throws IOException{
 		
 		Tools tools = new Tools();
 		String nomeFile = "flags.txt";

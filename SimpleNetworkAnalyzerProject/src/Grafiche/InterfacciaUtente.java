@@ -1,6 +1,7 @@
 package Grafiche;
 
 import it.nlmk.progetto01.Configurazione;
+import it.nlmk.progetto01.Flags;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -45,7 +46,7 @@ public class InterfacciaUtente extends JFrame {
 	public InterfacciaUtente() {
 		this.larghezza = larghezza;
 		this.altezza = altezza;
-
+		Flags flags = new Flags();
 		Toolkit mioToolkit = Toolkit.getDefaultToolkit();
 		Dimension dimensioniSchermo = mioToolkit.getScreenSize();
 
@@ -81,7 +82,9 @@ public class InterfacciaUtente extends JFrame {
 		final JButton buttonAvvio = new JButton("Avvio APP");
 		// final JButton button01 = new JButton();
 		// final JButton button02 = new JButton();
-
+		
+		
+		
 		pannelloComandi.setLayout(new GridLayout(2, 1));
 		pannelloComandi.setSize(300, 300);
 		// pannelloComandi.setBorder(BorderFactory.createLineBorder(Color.BLUE,1));
@@ -144,10 +147,19 @@ public class InterfacciaUtente extends JFrame {
 				}
 
 				if (source == buttonConfig) {
-
-					buttonAvvio.setEnabled(false);
-					PannelloConfigurazione pconfig = new PannelloConfigurazione();
-
+					try {
+						if (Flags.getStatoFlag("flagPannelloComandi")){
+							System.out.println("finestra già aperta");
+						}else{
+						
+						buttonAvvio.setEnabled(false);
+						PannelloConfigurazione pconfig = new PannelloConfigurazione();
+						Flags.aggiornaFlag("flagPannelloComandi", "true");
+						}
+					} catch (IOException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
 				}
 
 			}

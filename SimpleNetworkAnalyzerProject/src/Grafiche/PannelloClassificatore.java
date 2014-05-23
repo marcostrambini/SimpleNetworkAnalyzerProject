@@ -64,7 +64,7 @@ public class PannelloClassificatore extends JFrame{
 		
 		this.setLayout(new BorderLayout());
 		this.setSize((400*colonne), panelTesti.getHeight()+panelBottoni.getHeight()+(righe*25));
-		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
+		this.setDefaultCloseOperation(HIDE_ON_CLOSE);
 		
 		
 		
