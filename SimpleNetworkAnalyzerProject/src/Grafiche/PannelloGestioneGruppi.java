@@ -7,8 +7,11 @@ import it.nlmk.progetto01.Tools;
 import java.awt.Color;
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
+import java.awt.Point;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -43,14 +46,21 @@ public class PannelloGestioneGruppi extends JFrame{
 		
 	JButton button = new JButton("registra");
 	JLabel labelInfo = new JLabel();
-//    JButton buttonRefresh = new JButton("refresh");
+
 	
     Tools tools = new Tools();
+	PannelloConfigurazione pc;
 	
-	public PannelloGestioneGruppi() throws IOException{
+	public PannelloGestioneGruppi(final PannelloConfigurazione pc) throws IOException{
+		this.pc = pc;
+		Point point = new Point(pc.getPositionX()+pc.getSize().width, pc.getPositionY());
+		
+		
+		
+		setLocation(point);
 		setTitle("Gestione Gruppi");
 		setSize(300, 300);
-		setDefaultCloseOperation(HIDE_ON_CLOSE);
+		setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 		setLayout(new GridLayout(6,2));
 		add(labelGp01);
 		add(textGp01);
@@ -123,26 +133,24 @@ public class PannelloGestioneGruppi extends JFrame{
 			}
 			
 		};
-		
-//		ActionListener listenerRefresh = new ActionListener() {
-//			
-//			@Override
-//			public void actionPerformed(ActionEvent e) {
-//				try {
-//					refreshEsistente();
-//				} catch (IOException e1) {
-//				System.out.println("problemi con la lettura del file");
-//				}
-//				
-//			}
-//		};
+
 		
 		button.addActionListener(listener);
-//		buttonRefresh.addActionListener(listenerRefresh);
-		
-		setLocation(500, 200);
+
+	
 		setVisible(true);
 		
+		this.addWindowListener(new WindowAdapter() 
+		{
+			public void windowClosing(WindowEvent e){
+				pc.setEnableButtonClassicazione();
+				pc.setEnableButtonFileConfig();
+				System.out.println("chiuso");
+				FrameLog.setTextArea("chiusa finestra Gestione Gruppi");
+
+			}
+			
+		});
 	}
 	
 	/**
@@ -166,24 +174,18 @@ public class PannelloGestioneGruppi extends JFrame{
 			arrayRigheFile = tools.listToArray(listRigheFile);
 			
 			switch(arrayRigheFile.length){
-			case 5: textGp05.setText(arrayRigheFile[4]);
-			case 4:	textGp04.setText(arrayRigheFile[3]);
-			case 3: textGp03.setText(arrayRigheFile[2]);
-			case 2: textGp02.setText(arrayRigheFile[1]);
-			case 1: textGp01.setText(arrayRigheFile[0]);
+			case 6: textGp05.setText(arrayRigheFile[5]);
+			case 5: textGp04.setText(arrayRigheFile[4]);
+			case 4:	textGp03.setText(arrayRigheFile[3]);
+			case 3: textGp02.setText(arrayRigheFile[2]);
+			case 2: textGp01.setText(arrayRigheFile[1]);
+			case 1: System.out.println("file dei gruppi vuoto");
 			}
 				
 				
 		}
 	}
 	
-	
-	
-	public static void main(String[] args) throws IOException {
-		// TODO Auto-generated method stub
-		PannelloGestioneGruppi pic =  new PannelloGestioneGruppi();
-		
-		
-	}
+
 
 }

@@ -7,8 +7,11 @@ import it.nlmk.progetto01.Tools;
 import java.awt.Color;
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
+import java.awt.Point;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 
@@ -49,13 +52,24 @@ public class PannelloInserimentoConfig extends JFrame{
 	JButton button = new JButton("registra");
     JButton buttonRecupera = new JButton("recupera esistente");
 	
-	
+	PannelloConfigurazione pc;
 	
 //	JPanel panel = new JPanel();
 	
-	public PannelloInserimentoConfig(){
+	public PannelloInserimentoConfig(final PannelloConfigurazione pc){
+		this.pc = pc;
+		Point point = new Point(pc.getPositionX()+pc.getSize().width, pc.getPositionY());
+		setLocation(point);
 		setTitle("Settaggio config.ini");
 		setSize(300, 300);
+
+		
+		System.out.println("il pannello ins config vede la x del pannello config alla pos: "+pc.getPositionX());
+		System.out.println("il pannello ins config vede la y del pannello config alla pos: "+pc.getPositionY());
+		
+		
+		labelIpStart.setAlignmentX(RIGHT_ALIGNMENT);
+		
 		setDefaultCloseOperation(HIDE_ON_CLOSE);
 		setLayout(new GridLayout(9,2));
 		add(labelIpStart);
@@ -177,19 +191,27 @@ public class PannelloInserimentoConfig extends JFrame{
 		button.addActionListener(listener);
 		buttonRecupera.addActionListener(listenerRecupera);
 		
-		setLocation(500, 200);
+		
 		setVisible(true);
 		
-	}
-	
-	
-	
-	
-	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-		PannelloInserimentoConfig pic =  new PannelloInserimentoConfig();
+		this.addWindowListener(new WindowAdapter() 
+		{
+			public void windowClosing(WindowEvent e){
+				pc.setEnableButtonClassicazione();
+				pc.setEnableButtonGestGruppi();
+				System.out.println("chiuso");
+				FrameLog.setTextArea("chiusa finestra Config.ini");
+
+			}
+			
+		});
 		
 		
 	}
+	
+	
+	
+	
+
 
 }

@@ -2,8 +2,11 @@ package Grafiche;
 
 import java.awt.BorderLayout;
 import java.awt.GridLayout;
+import java.awt.Point;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 
@@ -11,6 +14,7 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 
 import it.nlmk.progetto01.Configurazione;
 import it.nlmk.progetto01.Tools;
@@ -24,10 +28,16 @@ import it.nlmk.progetto01.Tools;
 public class PannelloClassificatore extends JFrame{
 
 	
-	public PannelloClassificatore() throws IOException{
+	PannelloConfigurazione pc;
+	
+	public PannelloClassificatore(final PannelloConfigurazione pc) throws IOException{
+		this.pc = pc;
+		
+		
 		Configurazione configurazione = new Configurazione();
 		int totIp = configurazione.getNumeroDiIpRange();
 		String[] listaIp = configurazione.getListaIp();
+		
 		final JLabel labelInfo = new JLabel();
 		JButton buttonConferma = new JButton("Conferma");
 				
@@ -46,8 +56,12 @@ public class PannelloClassificatore extends JFrame{
 			colonne = ((totIp / 25)+1);
 			
 		}		
+		
 		System.out.println("righe: "+righe);
 		System.out.println("colonne: "+colonne);
+		
+		FrameLog.setTextArea("righe: "+righe);
+		FrameLog.setTextArea("colonne: "+colonne);
 		
 		JPanel panelTesti = new JPanel();
 		JPanel panelCentro = new JPanel();
@@ -60,12 +74,15 @@ public class PannelloClassificatore extends JFrame{
 		panelTesti.setSize((400*colonne), 50);
 		panelBottoni.add(buttonConferma);
 		panelBottoni.setSize((400*colonne), 50);
-		
+		panelCentro.setLayout(new GridLayout(totIp,1));
 		
 		this.setLayout(new BorderLayout());
-		this.setSize((400*colonne), panelTesti.getHeight()+panelBottoni.getHeight()+(righe*25));
-		this.setDefaultCloseOperation(HIDE_ON_CLOSE);
+//		this.setSize((400*colonne), panelTesti.getHeight()+panelBottoni.getHeight()+(righe*25));
+		this.setSize(400, panelTesti.getHeight()+panelBottoni.getHeight()+(righe*25));
 		
+		this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+		Point point = new Point(pc.getPositionX()+pc.getSize().width, pc.getPositionY());
+		setLocation(point);
 		
 		
 		
@@ -76,6 +93,10 @@ public class PannelloClassificatore extends JFrame{
 			panelCentro.add(classificatore);
 			listaClassificatori[i] = classificatore;
 		}
+		
+		JScrollPane jsp = new JScrollPane(panelCentro);
+		jsp.setSize(400, totIp*25);
+		
 		
 		ActionListener listener = new ActionListener() {
 			
@@ -104,10 +125,12 @@ public class PannelloClassificatore extends JFrame{
 				tools.clearFile("classificazione.txt");
 				tools.scriviFile("classificazione.csv", listaCsv);
 				tools.scriviFile("classificazione.txt", listaTxt);
-				
 				labelInfo.setText("File .csv e .txt creati!");
-				
 				tools.leggiFile("classificazione.txt");
+//				tools.clearFile("groups.ini");
+				tools.scriviFileGruppi(tools.getTabellaClassificazione());
+				FrameLog.setTextArea("classificato");
+				FrameLog.setTextArea(tools.leggiFileRitorna("classificazione.txt"));
 				
 			} catch (FileNotFoundException e) {
 				// TODO Auto-generated catch block
@@ -121,18 +144,24 @@ public class PannelloClassificatore extends JFrame{
 		buttonConferma.addActionListener(listener);
 		
 		this.add(panelTesti,BorderLayout.NORTH);
-		this.add(panelCentro, BorderLayout.CENTER);
+		this.add(jsp, BorderLayout.CENTER);
 		this.add(panelBottoni, BorderLayout.PAGE_END);
 		this.setVisible(true);
+		
+		this.addWindowListener(new WindowAdapter() 
+		{
+			public void windowClosing(WindowEvent e){
+				pc.setEnableButtonGestGruppi();
+				pc.setEnableButtonFileConfig();
+				System.out.println("chiuso");
+				FrameLog.setTextArea("chiusa finestra Classificazione");
+			}
+			
+		});
+		
+		
+	
 	}
 	
-	/**
-	 * 
-	 * @param args
-	 * @throws IOException
-	 */
-	public static void main(String[] args) throws IOException {
-		// TODO Auto-generated method stub
-		PannelloClassificatore pc = new PannelloClassificatore();
-	}
+
 }

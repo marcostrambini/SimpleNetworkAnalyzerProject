@@ -32,23 +32,40 @@ import Listener.ListenerTest;
  * 
  */
 public class InterfacciaUtente extends JFrame {
-	private static boolean flagConfig;
-
+//	private static boolean flagConfig;
+    
+	private int posX, posY;
 	private int larghezza;
 	private int altezza;
 	private JButton buttonConfig = new JButton("Configurazione");
 	private JButton buttonAvvio = new JButton("Avvio APP");
 	
-	public void setButtonEnableConfig(){
+	public void setEnableButtonConfig(){
 		this.buttonConfig.setEnabled(true);
-		this.buttonAvvio.setEnabled(false);
 	}
 	
-	public void setButtonEnableAvvio(){
-		this.buttonConfig.setEnabled(false);
+	public void setEnableButtonAvvio(){
 		this.buttonAvvio.setEnabled(true);
 	}
 
+	public void setDisableButtonConfig(){
+		this.buttonConfig.setEnabled(false);
+	}
+	
+	public void setDisableButtonAvvio(){
+		this.buttonAvvio.setEnabled(false);
+	}
+	
+	public int getPositionX(){
+		return posX;
+	}
+	
+	public int getPositionY(){
+		
+		return posY;
+	}
+	
+	
 	/**
 	 * costruttore a cui viene passato la misura della finestra come parametri
 	 * 
@@ -56,19 +73,24 @@ public class InterfacciaUtente extends JFrame {
 	 * @param altezza
 	 */
 	public InterfacciaUtente() {
-		this.larghezza = larghezza;
-		this.altezza = altezza;
+//		this.larghezza = larghezza;
+//		this.altezza = altezza;
 		Flags flags = new Flags();
 		Toolkit mioToolkit = Toolkit.getDefaultToolkit();
 		Dimension dimensioniSchermo = mioToolkit.getScreenSize();
 
 		int larghezzaFrame, altezzaFrame;
+		
+		
 		larghezzaFrame = (int) (dimensioniSchermo.getWidth() * 0.75);
 		altezzaFrame = (int) (dimensioniSchermo.getHeight() * 0.75);
-
+        posX = (int) (dimensioniSchermo.getWidth()*0.1);
+		posY = (int) (dimensioniSchermo.getHeight()*0.1);
 		setTitle("Simply Network Analyzer Project");
 		// setSize(larghezzaFrame, altezzaFrame);
 		this.setSize(301, 330);
+		
+		this.setLocation(posX, posY );
 		setResizable(true);
 		setLayout(null);
 
@@ -78,6 +100,7 @@ public class InterfacciaUtente extends JFrame {
 		// add(creaPannelloUtente(larghezzaFrame, altezzaFrame));
 
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
+		FrameLog.setTextArea("Aperto programma");
 		setVisible(true);
 
 	}
@@ -145,6 +168,7 @@ public class InterfacciaUtente extends JFrame {
 			public void actionPerformed(ActionEvent ev) {
 				JButton source = (JButton) ev.getSource();
 				if (source == buttonAvvio) {
+					FrameLog.setTextArea("cliccato su buttonAvvio");
 					if (source.getText() == "Avvio APP") {
 						buttonAvvio.setText("Stop APP");
 
@@ -159,19 +183,15 @@ public class InterfacciaUtente extends JFrame {
 				}
 
 				if (source == buttonConfig) {
-					try {
-						if (Flags.getStatoFlag("flagPannelloComandi")){
-							System.out.println("finestra già aperta");
-						}else{
+					FrameLog.setTextArea("cliccato su buttonConfig");
+						if (buttonAvvio.isEnabled()){
 						
 						buttonAvvio.setEnabled(false);
 						PannelloConfigurazione pconfig = new PannelloConfigurazione(InterfacciaUtente.this);
-						Flags.aggiornaFlag("flagPannelloComandi", "true");
+						}else{
+							System.out.println("finestra gia' aperta");
 						}
-					} catch (IOException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-					}
+				
 				}
 
 			}
@@ -232,12 +252,6 @@ public class InterfacciaUtente extends JFrame {
 		return bottoneMenu;
 	}
 
-	public static void setFlagconfig(boolean value) {
-		flagConfig = value;
-	}
 
-	public boolean getFlagConfig() {
-		return flagConfig;
-	}
 
 }

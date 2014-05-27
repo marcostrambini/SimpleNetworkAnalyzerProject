@@ -15,6 +15,8 @@ import java.util.ArrayList;
 import java.util.NoSuchElementException;
 import java.util.StringTokenizer;
 
+import Grafiche.FrameLog;
+
 
 /**
  * Classe di utilita'
@@ -476,7 +478,7 @@ public class Tools {
 			 
 					
 		}
-		
+		FrameLog.setTextArea("creato file "+nomeFile);
 		
 	}
 	

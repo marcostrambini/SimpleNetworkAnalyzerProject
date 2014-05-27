@@ -36,7 +36,7 @@ public class PannelloComandi {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				PannelloInserimentoConfig pannelloInserimento = new PannelloInserimentoConfig();
+				PannelloInserimentoConfig pannelloInserimento = new PannelloInserimentoConfig(null);
 				
 				
 			}
