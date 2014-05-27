@@ -36,6 +36,18 @@ public class InterfacciaUtente extends JFrame {
 
 	private int larghezza;
 	private int altezza;
+	private JButton buttonConfig = new JButton("Configurazione");
+	private JButton buttonAvvio = new JButton("Avvio APP");
+	
+	public void setButtonEnableConfig(){
+		this.buttonConfig.setEnabled(true);
+		this.buttonAvvio.setEnabled(false);
+	}
+	
+	public void setButtonEnableAvvio(){
+		this.buttonConfig.setEnabled(false);
+		this.buttonAvvio.setEnabled(true);
+	}
 
 	/**
 	 * costruttore a cui viene passato la misura della finestra come parametri
@@ -78,8 +90,8 @@ public class InterfacciaUtente extends JFrame {
 	private JPanel creaPannelloComandi(int larghezzaFrame, int altezzaFrame) {
 		int larghezzaPannelloComandi = ((larghezzaFrame / 10) * 2);
 		final JPanel pannelloComandi = new JPanel();
-		final JButton buttonConfig = new JButton("Configurazione");
-		final JButton buttonAvvio = new JButton("Avvio APP");
+//		final JButton buttonConfig = new JButton("Configurazione"); ****
+//		final JButton buttonAvvio = new JButton("Avvio APP"); ****
 		// final JButton button01 = new JButton();
 		// final JButton button02 = new JButton();
 		
@@ -153,7 +165,7 @@ public class InterfacciaUtente extends JFrame {
 						}else{
 						
 						buttonAvvio.setEnabled(false);
-						PannelloConfigurazione pconfig = new PannelloConfigurazione();
+						PannelloConfigurazione pconfig = new PannelloConfigurazione(InterfacciaUtente.this);
 						Flags.aggiornaFlag("flagPannelloComandi", "true");
 						}
 					} catch (IOException e) {

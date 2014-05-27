@@ -13,9 +13,12 @@ public ExitFrameTest(){
 	setVisible(true);
 //	setDefaultCloseOperation(EXIT_ON_CLOSE);
 	
-	this.addWindowListener(new WindowAdapter() {
-		public void windowsClosing(){
+	this.addWindowListener(new WindowAdapter() 
+	{
+		public void windowClosing(WindowEvent e){
+			
 			System.out.println("chiuso");
+			System.exit(0);
 		}
 		
 	});

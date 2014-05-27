@@ -1,6 +1,11 @@
-10.0.119.10 - martino - ciao
-10.0.119.11 - martino - tv
-10.0.119.12 - Allotta - cacca
-10.0.119.13 - escludi - non_identificato
-10.0.119.14 - escludi - non_identificato
-10.0.119.15 - sasa - caccone
+10.0.119.10 - escludi - non_identificato
+10.0.119.11 - escludi - non_identificato
+10.0.119.12 - escludi - non_identificato
+10.0.119.13 - laminatoio - pressa
+10.0.119.14 - acc - cf
+10.0.119.15 - pippo - ciao
+10.0.119.16 - laminatoio - gabbiarulli
+10.0.119.17 - escludi - non_identificato
+10.0.119.18 - escludi - non_identificato
+10.0.119.19 - escludi - non_identificato
+10.0.119.20 - escludi - non_identificato

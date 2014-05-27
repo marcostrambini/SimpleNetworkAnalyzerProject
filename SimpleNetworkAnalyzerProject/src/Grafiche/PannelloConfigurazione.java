@@ -1,9 +1,13 @@
 package Grafiche;
 
+import it.nlmk.progetto01.Flags;
+
 import java.awt.GridBagLayout;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.io.IOException;
 
 import javax.swing.JButton;
@@ -11,7 +15,10 @@ import javax.swing.JFrame;
 
 public class PannelloConfigurazione extends JFrame {
 
-	public  PannelloConfigurazione() {
+	InterfacciaUtente iu;
+	
+	public  PannelloConfigurazione(final InterfacciaUtente iu) {
+		this.iu = iu;
 		this.setTitle("Configurazioni");
 		this.setSize(300, 200);
 		this.setLayout(new GridLayout(3, 1));
@@ -54,12 +61,33 @@ public class PannelloConfigurazione extends JFrame {
 		this.add(buttonGestGruppi);
 		this.add(buttonClassicazione);
 
-		this.setDefaultCloseOperation(HIDE_ON_CLOSE);
+//		this.setDefaultCloseOperation(HIDE_ON_CLOSE);
+		
+		this.addWindowListener(new WindowAdapter() 
+		{
+			public void windowClosing(WindowEvent e){
+				iu.setButtonEnableAvvio();
+				
+//				Flags.aggiornaFlag("flagPannelloComandi", "false");
+				
+				System.out.println("chiuso");
+//				System.exit(0);
+			}
+			
+		});
+		
+		
+		
+		
+		
+		
+		
+		
 		this.setVisible(true);
 	}
 
-	public static void main(String[] args) {
-		PannelloConfigurazione pconf = new PannelloConfigurazione();
-	}
+//	public static void main(String[] args) {
+//		PannelloConfigurazione pconf = new PannelloConfigurazione();
+//	}
 
 }
