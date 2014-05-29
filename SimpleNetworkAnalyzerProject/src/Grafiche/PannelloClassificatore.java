@@ -47,12 +47,12 @@ public class PannelloClassificatore extends JFrame{
 		int righe = 0;
 		int labelAggiunti = 0;
 		
-		if (totIp < 25){
+		if (totIp < 20){
 			righe = totIp;
 			colonne = 1;
 		}	
 		else{
-			righe = 25;
+			righe = 20;
 			colonne = ((totIp / 25)+1);
 			
 		}		
@@ -77,12 +77,14 @@ public class PannelloClassificatore extends JFrame{
 		panelCentro.setLayout(new GridLayout(totIp,1));
 		
 		this.setLayout(new BorderLayout());
-//		this.setSize((400*colonne), panelTesti.getHeight()+panelBottoni.getHeight()+(righe*25));
+
 		this.setSize(400, panelTesti.getHeight()+panelBottoni.getHeight()+(righe*25));
 		
 		this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
-		Point point = new Point(pc.getPositionX()+pc.getSize().width, pc.getPositionY());
-		setLocation(point);
+//		Point point = new Point(pc.getPositionX()+pc.getSize().width, pc.getPositionY());
+		Point point = pc.getLocation();
+		
+		setLocation(point.x+pc.getSize().width, point.y);
 		
 		
 		

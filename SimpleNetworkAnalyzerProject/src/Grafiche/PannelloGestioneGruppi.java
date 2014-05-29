@@ -53,11 +53,8 @@ public class PannelloGestioneGruppi extends JFrame{
 	
 	public PannelloGestioneGruppi(final PannelloConfigurazione pc) throws IOException{
 		this.pc = pc;
-		Point point = new Point(pc.getPositionX()+pc.getSize().width, pc.getPositionY());
-		
-		
-		
-		setLocation(point);
+        Point point = pc.getLocation();
+		setLocation(point.x+pc.getSize().width, point.y);
 		setTitle("Gestione Gruppi");
 		setSize(300, 300);
 		setDefaultCloseOperation(DISPOSE_ON_CLOSE);

@@ -58,8 +58,8 @@ public class PannelloInserimentoConfig extends JFrame{
 	
 	public PannelloInserimentoConfig(final PannelloConfigurazione pc){
 		this.pc = pc;
-		Point point = new Point(pc.getPositionX()+pc.getSize().width, pc.getPositionY());
-		setLocation(point);
+		Point point = pc.getLocation();
+		setLocation(point.x+pc.getSize().width, point.y);
 		setTitle("Settaggio config.ini");
 		setSize(300, 300);
 

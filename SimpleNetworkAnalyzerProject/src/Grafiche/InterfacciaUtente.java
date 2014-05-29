@@ -55,6 +55,10 @@ public class InterfacciaUtente extends JFrame {
 	public void setDisableButtonAvvio(){
 		this.buttonAvvio.setEnabled(false);
 	}
+
+	public void setLabelButtonAvvio(String value){
+		this.buttonAvvio.setText(value);
+	}
 	
 	public int getPositionX(){
 		return posX;
@@ -88,14 +92,14 @@ public class InterfacciaUtente extends JFrame {
 		posY = (int) (dimensioniSchermo.getHeight()*0.1);
 		setTitle("Simply Network Analyzer Project");
 		// setSize(larghezzaFrame, altezzaFrame);
-		this.setSize(301, 330);
+		this.setSize(301, 230);
 		
 		this.setLocation(posX, posY );
 		setResizable(true);
 		setLayout(null);
 
 		// add(creaPannelloComandi(larghezzaFrame, altezzaFrame ));
-		add(creaPannelloComandi(300, 300));
+		add(creaPannelloComandi(300, 200));
 
 		// add(creaPannelloUtente(larghezzaFrame, altezzaFrame));
 
@@ -121,7 +125,7 @@ public class InterfacciaUtente extends JFrame {
 		
 		
 		pannelloComandi.setLayout(new GridLayout(2, 1));
-		pannelloComandi.setSize(300, 300);
+		pannelloComandi.setSize(300, 200);
 		// pannelloComandi.setBorder(BorderFactory.createLineBorder(Color.BLUE,1));
 		// pannelloComandi.setBounds(0, 0, larghezzaPannelloComandi ,
 		// altezzaFrame);
@@ -173,7 +177,11 @@ public class InterfacciaUtente extends JFrame {
 						buttonAvvio.setText("Stop APP");
 
 						buttonConfig.setEnabled(false);
-
+						try {
+							PannelloAvvioGruppi pag = new PannelloAvvioGruppi(InterfacciaUtente.this);
+						} catch (IOException e) {
+							FrameLog.setTextArea("problemi di apertura gruppi");
+						}
 					} else {
 						buttonAvvio.setText("Avvio APP");
 

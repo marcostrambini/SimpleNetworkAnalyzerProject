@@ -16,6 +16,8 @@ public class FrameLog extends JFrame {
 	
 	public FrameLog(InterfacciaUtente iu){
 		this.iu = iu;
+		
+		setTitle("Frame Log");
 		setSize(300, 300);
 		setLocation(iu.getPositionX(), iu.getPositionY()+iu.getSize().height);
 		add(label);

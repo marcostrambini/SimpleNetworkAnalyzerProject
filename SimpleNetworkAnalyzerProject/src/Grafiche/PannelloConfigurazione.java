@@ -4,6 +4,7 @@ import it.nlmk.progetto01.Flags;
 
 import java.awt.GridBagLayout;
 import java.awt.GridLayout;
+import java.awt.Point;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
@@ -61,7 +62,10 @@ public class PannelloConfigurazione extends JFrame {
 		this.setSize(300, 200);
 		this.setLayout(new GridLayout(3, 1));
 		
-		this.setLocation(iu.getPositionX() + iu.getSize().width , (int) iu.getPositionY());
+		Point point = iu.getLocation();
+		
+		this.setLocation(point.x+iu.getSize().width, point.y);
+//		this.setLocation(iu.getPositionX() + iu.getSize().width , (int) iu.getPositionY());
 		posX = iu.getPositionX()+iu.getSize().width;
 		posY = iu.getPositionY();
 		
