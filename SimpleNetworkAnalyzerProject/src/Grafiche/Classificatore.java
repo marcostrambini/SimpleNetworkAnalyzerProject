@@ -18,6 +18,10 @@ public class Classificatore extends JPanel {
 	JTextField textField = new JTextField();
 	JComboBox comboGruppi = getComboGruppi(getListaParametri());
 	
+	public Classificatore(){
+		
+	}
+	
 	public Classificatore(String nome){
 //		this.nome = nome;
 		label.setText(nome);
@@ -48,7 +52,7 @@ public class Classificatore extends JPanel {
 	}
 
 
-private String[] getListaParametri(){
+public String[] getListaParametri(){
 	Tools tools = new Tools();
 	String nomeFile="groups.ini";
 	String[] parametri;
@@ -65,7 +69,7 @@ private String[] getListaParametri(){
 	
 	
 	
-private JComboBox getComboGruppi(String[] elencoGruppi){
+public JComboBox getComboGruppi(String[] elencoGruppi){
 //	Configurazione conf = new Configurazione();
 //	conf.verificoParametriIp();
 //	String[] elencoIp = conf.getListaIp();
