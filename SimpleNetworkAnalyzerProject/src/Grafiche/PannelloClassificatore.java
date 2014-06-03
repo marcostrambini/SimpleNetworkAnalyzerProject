@@ -72,8 +72,12 @@ public class PannelloClassificatore extends JFrame{
 		
 		panelTesti.add(labelInfo);
 		panelTesti.setSize((400*colonne), 50);
-		panelBottoni.add(buttonConferma);
 		panelBottoni.setSize((400*colonne), 50);
+		panelBottoni.setLayout(new GridLayout(1,3));
+		panelBottoni.add(new JButton("Test1"));
+		panelBottoni.add(new JButton("Test2"));
+		panelBottoni.add(buttonConferma);
+		
 		panelCentro.setLayout(new GridLayout(totIp,1));
 		
 		this.setLayout(new BorderLayout());

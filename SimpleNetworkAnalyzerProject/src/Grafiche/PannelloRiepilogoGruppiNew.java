@@ -8,10 +8,6 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
-import com.jgoodies.forms.layout.FormLayout;
-import com.jgoodies.forms.layout.ColumnSpec;
-import com.jgoodies.forms.factories.FormFactory;
-import com.jgoodies.forms.layout.RowSpec;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 
@@ -45,18 +41,7 @@ public class PannelloRiepilogoGruppiNew extends JFrame {
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
-		contentPane.setLayout(new FormLayout(new ColumnSpec[] {
-				ColumnSpec.decode("68px:grow"),
-				ColumnSpec.decode("114px"),
-				FormFactory.RELATED_GAP_COLSPEC,
-				ColumnSpec.decode("92px"),},
-			new RowSpec[] {
-				RowSpec.decode("29px"),
-				RowSpec.decode("29px"),
-				FormFactory.RELATED_GAP_ROWSPEC,
-				FormFactory.DEFAULT_ROWSPEC,
-				FormFactory.RELATED_GAP_ROWSPEC,
-				RowSpec.decode("default:grow"),}));
+	
 		
 		JComboBox comboBox = new JComboBox();
 		contentPane.add(comboBox, "1, 2, fill, center");
