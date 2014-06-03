@@ -384,6 +384,40 @@ public class Tools {
 				return tabellaConfigurazione;
 		}
 	
+	/**
+	 * metodo che ritorna la tabella degli ip classificati in base ad un filtro
+	 * @param filtro
+	 * @param tabella
+	 * @return
+	 */
+	public String[][] getTabellaFiltrata(String filtro, String[][] tabella){
+//		Tools tools = new Tools();
+		String[][] tabellaFiltrata = new String[tabella.length][3];
+		
+		int pos =0;
+		
+		for(int i =0; i<tabella.length; i++){
+//			int pos = 0;
+			if (tabella[i][1].equals(filtro)){
+				tabellaFiltrata[pos][0] = tabella[i][0];
+				System.out.print(tabellaFiltrata[pos][0]+" ");
+				tabellaFiltrata[pos][1] = tabella[i][1];
+				System.out.print(tabellaFiltrata[pos][1]+" ");
+				tabellaFiltrata[pos][2] = tabella[i][2];
+				System.out.println(tabellaFiltrata[pos][2]);
+			
+				pos++;
+		}
+			
+		}
+		System.out.println("righe: "+pos);
+		return tabellaFiltrata;
+				
+	}
+	
+	
+	
+	
 	public void scriviFileGruppi(String[][] tabellaClassificazione) throws IOException{
 		String nomeFile = "groups.ini";
 		String gruppo01 ="", gruppo02="", gruppo03="", gruppo04="", gruppo05="", esclusi="";

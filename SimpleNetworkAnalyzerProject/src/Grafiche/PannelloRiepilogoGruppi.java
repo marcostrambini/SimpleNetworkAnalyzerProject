@@ -48,7 +48,7 @@ public class PannelloRiepilogoGruppi extends JFrame {
 		String[] columnNames = {"Indirizzo Ip", "Gruppo", "Descrizione"};
 		
 		String[][] tabella = tools.getTabellaClassificazione();
-		String[][] tabellaFiltrata = filtro((String) comboGruppi.getItemAt(2), tabella);
+		String[][] tabellaFiltrata = getTabellaFiltrata((String) comboGruppi.getItemAt(2), tabella);
 		
 		
 		
@@ -65,7 +65,7 @@ public class PannelloRiepilogoGruppi extends JFrame {
 	
 	
 	
-	private String[][] filtro(String filtro, String[][] tabella){
+	private String[][] getTabellaFiltrata(String filtro, String[][] tabella){
 		Tools tools = new Tools();
 		String[][] tabellaFiltrata = new String[tabella.length][3];
 		
