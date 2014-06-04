@@ -64,15 +64,16 @@ public class PannelloMonitorElementi extends JFrame {
     	Tools tools = new Tools();
     	ArrayList<String> listaGruppi = tools.leggiFileRitorna("groups.ini");
     	
-//    	String[][] tabFiltrata1 = tools.getTabellaFiltrata(listaGruppi.get(1), tools.getTabellaClassificazione());
+    	String[][] tabFiltrata1 = tools.getTabellaFiltrata(listaGruppi.get(1), tools.getTabellaClassificazione());
     	
-    	String[][] tabFiltrata1 = new String[11][3];
+//    	String[][] tabFiltrata1 = new String[11][3];
     	String ip="";
-    	for(int i =0; i<11; i++){
-    		ip="192.168.0."+(i+1);
     	
-    	tabFiltrata1[i][0] = ip;
-    	}
+//    	for(int i =0; i<11; i++){
+//    		ip="192.168.0."+(i+1);
+//    	
+//    	tabFiltrata1[i][0] = ip;
+//    	}
     	
     	for(int i=0; i<tabFiltrata1.length; i++)
     		System.out.println(tabFiltrata1[i][0]);
