@@ -1,38 +1,48 @@
 package Grafiche;
 
+import it.nlmk.progetto01.ThreadPingIcon;
+
 import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.FlowLayout;
 import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.ImageIcon;
+import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-public class NetStatusDevice extends JFrame{
+import org.omg.CORBA.Current;
 
+public class NetStatusDevice extends JPanel{
 	
-	public NetStatusDevice(){
+	final ImageIcon iconRowRed = new ImageIcon("icons/freccia_rossa_down20.png");
+	final ImageIcon iconRowGreen = new ImageIcon("icons/freccia_verde_up20.png");
+	JButton button = new JButton();
+	
+	public NetStatusDevice(final String ipAddress){
 		
-	setLayout(new GridLayout(1,2));
-	setSize(400, 100);
-	setDefaultCloseOperation(EXIT_ON_CLOSE);
+	setLayout(new FlowLayout());
+	
+//	setDefaultCloseOperation(EXIT_ON_CLOSE);
 	setVisible(true);
 	
-	JPanel panelSX =  new JPanel();
-	JPanel panelDX =  new JPanel();
-	ImageIcon icon = new ImageIcon("freccia_rossa_down.png");
-	JLabel label = new JLabel();
-	label.setIcon(icon);
-	panelDX.add(label);
-	
-	panelSX.setSize(300, 100);
-	panelDX.setSize(100, 100);
-	
-	panelSX.setBackground(Color.RED);
-	
-	add(panelSX);
-	add(panelDX);
+	button.setText(ipAddress);
+	button.setSize(120, 20);
 
+
+	final JLabel label = new JLabel();
+	label.setIcon(iconRowRed);
+	label.setSize(20, 20);
+		
+	new ThreadPingIcon(ipAddress, button, label, iconRowGreen, iconRowRed).start(); 
+    
+	add(button);
+	add(label);
+	setSize(180, 50);
 		
 	}
 	
@@ -43,8 +53,15 @@ public class NetStatusDevice extends JFrame{
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		
-		NetStatusDevice nsd = new NetStatusDevice();
+		JFrame frame = new JFrame();
+		frame.setTitle("Test");
+		frame.setSize(180, 300);
+		frame.setLayout(new GridLayout());
+		NetStatusDevice nsd = new NetStatusDevice("192.168.0.1");
+//		NetStatusDevice nsd2 = new NetStatusDevice("192.168.0.7");
+		frame.add(nsd);
+		frame.setVisible(true);
+	
 	}
 
 }

@@ -11,29 +11,32 @@ import javax.swing.RepaintManager;
 
 import Test.ExitFrameTest;
 
-public class ThreadPing extends Thread {
+public class ThreadPingIcon extends Thread {
 
 	Tools tools = new Tools();
 	JButton button;
     JLabel label;
-    ImageIcon icon;
-	
-	public ThreadPing(String str) {
+    ImageIcon icon1;
+    ImageIcon icon2;
+    
+	public ThreadPingIcon(String str) {
 		super(str);
 	}
 	
-	public ThreadPing(String str, JButton b){
-		super(str);
-		this.button = b;
-	}
-	
-	public ThreadPing(String str, JButton b, ImageIcon icon){
+	public ThreadPingIcon(String str, JButton b){
 		super(str);
 		this.button = b;
-		this.icon = icon;
 	}
 	
-	public ThreadPing(String str, JLabel l){
+	public ThreadPingIcon(String str, JButton b, JLabel label, ImageIcon icon1, ImageIcon icon2){
+		super(str);
+		this.button = b;
+		this.label = label;
+		this.icon1 = icon1;
+		this.icon2 = icon2;
+	}
+	
+	public ThreadPingIcon(String str, JLabel l){
 		super(str);
 		this.label = l;
 	}
@@ -45,12 +48,14 @@ public class ThreadPing extends Thread {
 			try {
 				if(tools.ping(getName())){
 					button.setForeground(Color.GREEN);
+					label.setIcon(icon1);
 					button.repaint();
 					
 					System.out.println(getName() + " : " + tools.ping(getName())+" --> verde");
 					sleep(3000);
 				}else{
 					button.setForeground(Color.RED);
+					label.setIcon(icon2);
 					button.repaint();
 					System.out.println(getName() + " : " + tools.ping(getName())+" --> rosso");
 				sleep(3000);

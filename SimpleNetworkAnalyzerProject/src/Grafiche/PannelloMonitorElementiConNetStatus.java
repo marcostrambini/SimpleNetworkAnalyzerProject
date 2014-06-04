@@ -23,43 +23,55 @@ import javax.swing.JScrollPane;
  * @author marcostrambini
  *
  */
-public class PannelloMonitorElementi extends JFrame {
+public class PannelloMonitorElementiConNetStatus extends JFrame {
 
 	
-	public PannelloMonitorElementi(){
+	public PannelloMonitorElementiConNetStatus(){
 		
 	}
 	
-    public PannelloMonitorElementi(String[][] listaIp, String nomePannello){
+    public PannelloMonitorElementiConNetStatus(String[][] listaIp, String nomePannello){
 	
     	
+    int altezza =0;
     
-	setLayout(new BorderLayout());
+    if (listaIp.length<20)
+    	altezza = listaIp.length * 50;
+    else
+    	altezza = 1000;
+	
 	
 	setTitle("Gruppo: "+nomePannello);
-	setDefaultCloseOperation(EXIT_ON_CLOSE);
+	setDefaultCloseOperation(DISPOSE_ON_CLOSE);
     
 	
 	
 	
 	JPanel panelButton =  new JPanel();
-	panelButton.setSize(400, 600);
+	
 	panelButton.setLayout(new GridLayout(listaIp.length, 1));
-	panelButton.setVisible(true);
+	
 	
 	for(int i =0; i<listaIp.length; i++){
-		JButton button = new JButton(listaIp[i][0]);
-		panelButton.add(button);
-		ThreadPing tp = new ThreadPing(listaIp[i][0], button);
-		tp.start();
+		NetStatusDevice nsd = new NetStatusDevice(listaIp[i][0]);
+		panelButton.add(nsd);
+//		ThreadPing tp = new ThreadPing(listaIp[i][0], button);
+//		tp.start();
 	}
     
 	JScrollPane jsp = new JScrollPane(panelButton);
-	jsp.setSize(400, 600);
+	jsp.setSize(200, altezza);
 //	jsp.add(panelButton);
+	
+	this.setLayout(new BorderLayout());
 	this.add(jsp, BorderLayout.CENTER);
-	setSize(400, 600);
-	setVisible(true);	
+	this.setSize(200, altezza);
+	
+	
+//	panelButton.setVisible(true);
+	panelButton.setSize(200, altezza);
+	
+	this.setVisible(true);	
 	}
 	
     public static void main(String[] args) throws IOException{
@@ -82,8 +94,8 @@ public class PannelloMonitorElementi extends JFrame {
     	
     	
     	String[][] tabFiltrata2 = tools.getTabellaFiltrata(tools.getGruppoAllaPosizione(0), tools.getTabellaClassificazione());
-    	PannelloMonitorElementi pme = new PannelloMonitorElementi(tabFiltrata1, tools.getGruppoAllaPosizione(1) );
-    	PannelloMonitorElementi pme2 = new PannelloMonitorElementi(tabFiltrata2, tools.getGruppoAllaPosizione(0));
+    	PannelloMonitorElementiConNetStatus pme = new PannelloMonitorElementiConNetStatus(tabFiltrata1, tools.getGruppoAllaPosizione(1) );
+    	PannelloMonitorElementiConNetStatus pme2 = new PannelloMonitorElementiConNetStatus(tabFiltrata2, tools.getGruppoAllaPosizione(0));
     }
 	
 }

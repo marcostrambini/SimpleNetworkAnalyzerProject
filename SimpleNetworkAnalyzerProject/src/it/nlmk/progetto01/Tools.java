@@ -134,20 +134,21 @@ public class Tools {
 	 * @return
 	 * @throws IOException
 	 */
-	public ArrayList<String>  leggiFileRitorna(String nomeFile) throws IOException{
+	public ArrayList<String>  leggiFileRitorna(String nomeFile) throws IOException{ 
+//	public String[] leggiFileRitorna(String nomeFile) throws IOException{
 		ArrayList<String> arrayLetto = new ArrayList<String>();
-		String stringa;
 		FileReader fr = new FileReader(nomeFile);
 		BufferedReader br = new BufferedReader(fr);
-		//      br.readLine();
 		String sCurrentLine;
 		while((sCurrentLine = br.readLine()) != null){
-			
-			arrayLetto.add(sCurrentLine);
+		arrayLetto.add(sCurrentLine);
 		}
+		
+		String[] arrayReturn = listToArray(arrayLetto);
 //		arrayLetto.add("FINE");
 		fr.close();
-		return arrayLetto;
+		return arrayLetto; 
+//		return arrayReturn;
 	}
 
 	/**
@@ -365,21 +366,17 @@ public class Tools {
 		String[] arrayClassificazione;
 
 		listaClassificazione = leggiFileRitorna(nomeFile);
-	
-		arrayClassificazione = listToArray(listaClassificazione);
+		arrayClassificazione = listToArray(listaClassificazione); 
+		
 		String[][] tabellaConfigurazione = new String[arrayClassificazione.length][3];
 		
 				for (int r = 0; r < arrayClassificazione.length ; r++){
-					
 					StringTokenizer st = new StringTokenizer(arrayClassificazione[r]);
-					tabellaConfigurazione[r][0] = st.nextToken();
-//					System.out.print(tabellaConfigurazione[r][0]);
+					tabellaConfigurazione[r][0] = st.nextToken();	
 					st.nextToken();
 					tabellaConfigurazione[r][1] = st.nextToken();
-//					System.out.print(tabellaConfigurazione[r][1]);
 					st.nextToken();
 					tabellaConfigurazione[r][2] = st.nextToken();
-//					System.out.println(tabellaConfigurazione[r][2]);
 				}
 				return tabellaConfigurazione;
 		}
@@ -392,26 +389,46 @@ public class Tools {
 	 */
 	public String[][] getTabellaFiltrata(String filtro, String[][] tabella){
 //		Tools tools = new Tools();
-		String[][] tabellaFiltrata = new String[tabella.length][3];
 		
+		
+
+		ArrayList<ArrayList<String>> listTemp = new ArrayList<ArrayList<String>>();
+		
+		String[][] tabellaFiltrata = new String[tabella.length][3];
 		int pos =0;
 		
 		for(int i =0; i<tabella.length; i++){
-//			int pos = 0;
-			if (tabella[i][1].equals(filtro)){
+//			
+			 if (tabella[i][1].equals(filtro)){
+	
+				
 				tabellaFiltrata[pos][0] = tabella[i][0];
-				System.out.print(tabellaFiltrata[pos][0]+" ");
+//				System.out.print(tabellaFiltrata[pos][0]+" ");
 				tabellaFiltrata[pos][1] = tabella[i][1];
-				System.out.print(tabellaFiltrata[pos][1]+" ");
+//				System.out.print(tabellaFiltrata[pos][1]+" ");
 				tabellaFiltrata[pos][2] = tabella[i][2];
-				System.out.println(tabellaFiltrata[pos][2]);
+//				System.out.println(tabellaFiltrata[pos][2]);
 			
 				pos++;
 		}
 			
 		}
+		
+		String[][] tabellaFiltrataPulita = new String[pos][3];
+		
+		for(int i=0; i<pos;i++){
+			if (tabellaFiltrata[i][1].equals(filtro)){
+			tabellaFiltrataPulita[i][0] = tabellaFiltrata[i][0];
+			tabellaFiltrataPulita[i][1] = tabellaFiltrata[i][1];
+			tabellaFiltrataPulita[i][2] = tabellaFiltrata[i][2];
+			}
+		}
+	
+
+		
+		
 		System.out.println("righe: "+pos);
-		return tabellaFiltrata;
+		return tabellaFiltrataPulita;
 				
 	}
 	
@@ -421,8 +438,13 @@ public class Tools {
 	public void scriviFileGruppi(String[][] tabellaClassificazione) throws IOException{
 		String nomeFile = "groups.ini";
 		String gruppo01 ="", gruppo02="", gruppo03="", gruppo04="", gruppo05="", esclusi="";
-		ArrayList<String> listaGruppi = leggiFileRitorna(nomeFile);
-		String[] arrayGruppi = listToArray(listaGruppi);
+		
+		ArrayList<String> listaGruppi = leggiFileRitorna(nomeFile); 
+		String[] arrayGruppi = listToArray(listaGruppi); 
+		
+		
+		
+		
 		switch(arrayGruppi.length){
 		case 6: gruppo05 = arrayGruppi[5];
 				System.out.println("6 elementi");
@@ -515,6 +537,93 @@ public class Tools {
 		FrameLog.setTextArea("creato file "+nomeFile);
 		
 	}
+	
+	/**
+	 * metodo che ritorna il nome del gruppo ad una posizione data come parametro
+	 * @param posizione
+	 * @return
+	 */
+	public String getGruppoAllaPosizione(int posizione){
+		ArrayList<String> listaGruppi = null;
+		
+		try {
+			listaGruppi = leggiFileRitorna("groups.ini");
+		} catch (IOException e) {
+			System.out.println("problemi di lettura del file groups.ini");
+		}
+
+		if(posizione <= listaGruppi.size())
+			return listaGruppi.get(posizione);
+		else{
+			System.out.println("posizione richiesta non valida");
+			return null;
+		}
+	}	
+	
+	/**
+	 * metodo che ritorna la posizione di un determinato gruppo
+	 * @param gruppo
+	 * @return
+	 */
+	public int getPosizioneDelGruppo(String gruppo){
+		ArrayList<String> listaGruppi = null;
+
+		try {
+			listaGruppi = leggiFileRitorna("groups.ini");
+		} catch (IOException e) {
+			System.out.println("problemi di lettura del file groups.ini");
+		}
+
+		int pos = 0;
+		for(int i=0; i<listaGruppi.size();i++){
+			if(listaGruppi.get(i).equals(gruppo))
+				pos = i;
+		}
+		
+		return pos;
+		
+	}
+	
+	
+	
+	/**
+	 * metodo che stampa a console il contenuto di un array di stringhe
+	 * @param arrayString
+	 */
+	public void stampaSuConsole(String[] arrayString){
+		
+		for(int i=0; i<arrayString.length; i++)
+			System.out.println(arrayString[i]);
+		
+		System.out.println("Elementi nell'array: "+arrayString.length);
+		
+	}
+
+	/**
+	 * metodo che stampa a console il contenuto di un ArrayList di stringhe
+	 * @param arrayList
+	 */
+	public void stampaSuConsole(ArrayList<String> arrayList){
+		
+		for(int i=0; i<arrayList.size(); i++)
+			System.out.println(arrayList.get(i));
+		
+		System.out.println("Elementi nell'arrayList: "+arrayList.size());
+	}
+
+	/**
+	 * metodo che stampa a console il contenuto di una tabella a 3 colonne
+	 * @param arrayList
+	 */
+	public void stampaSuConsole(String[][] tabella){
+		
+		for(int r=0; r<tabella.length; r++)
+			System.out.println(tabella[r][0] + " - " + tabella[r][1] + " - " + tabella[r][2]);
+		System.out.println("Record in tabella: "+tabella.length);
+	}
+	
+	
+	
 	
 	public static void main(String[] args) throws IOException{
 		String[][] test;
