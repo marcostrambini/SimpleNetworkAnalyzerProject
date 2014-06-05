@@ -649,27 +649,27 @@ public class Tools {
 		String minutiString="";
 		String secondiString="";
 		
-		if (giorno < 9)
+		if (giorno < 10)
 			giornoString = "0"+giorno;
 		else
 			giornoString= ""+giorno;
 		
-		if (mese < 9)
+		if (mese < 10)
 			meseString = "0"+mese;
 		else
 			meseString= ""+mese;
 		
-		if (ore < 9)
+		if (ore < 10)
 			oreString = "0"+ore;
 		else
 			oreString= ""+ore;
 		
-		if (minuti < 9)
+		if (minuti < 10)
 			minutiString = "0"+minuti;
 		else
 			minutiString= ""+minuti;
 		
-		if (secondi < 9)
+		if (secondi < 10)
 			giornoString = "0"+giorno;
 		else
 			secondiString= ""+secondi;
@@ -678,6 +678,41 @@ public class Tools {
 		return dataOra;
 	}
 	
+	/**
+	 * metodo che ritorna il codice di stato
+	 * @param code
+	 * @param ipAddress
+	 * @return
+	 */
+	public String getStatusCode(int code, String ipAddress){
+		switch(code){
+		case 1: return "cod01 - Dispositivo " + ipAddress + " online alle: " + getDataOra(); 
+		case 2: return "cod02 - Dispositivo " + ipAddress + " offline alle: " + getDataOra();
+		default: return "";
+		}
+	}
+	
+	/**
+	 * metodo che scrive sul file di logStatus
+	 * @param messaggio
+	 */
+	public void scriviLogStatus(String messaggio){
+		String nomeFile = "logStatus.txt";
+
+		if(!esisteFile(nomeFile)){
+			try {
+				creaFile(nomeFile);
+			} catch (FileNotFoundException e) {
+				System.out.println("problemi di creazione file: "+nomeFile);
+			}
+		}
+
+		try {
+			scriviFile(nomeFile, messaggio);
+		} catch (FileNotFoundException e) {
+			System.out.println("problemi di scrittura su file: "+nomeFile);
+		}
+	}
 	
 	public static void main(String[] args) throws IOException{
 		String[][] test;

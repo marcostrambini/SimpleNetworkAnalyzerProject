@@ -53,23 +53,23 @@ public class PannelloMonitorElementiConNetStatus extends JFrame {
 	
 	
 	for(int i =0; i<listaIp.length; i++){
-		NetStatusDevice nsd = new NetStatusDevice(listaIp[i][0]);
+		NetStatusDevice nsd = new NetStatusDevice(listaIp[i][0], listaIp[i][2]);
 		panelButton.add(nsd);
 //		ThreadPing tp = new ThreadPing(listaIp[i][0], button);
 //		tp.start();
 	}
     
 	JScrollPane jsp = new JScrollPane(panelButton);
-	jsp.setSize(200, altezza);
+	jsp.setSize(500, altezza);
 //	jsp.add(panelButton);
 	
 	this.setLayout(new BorderLayout());
 	this.add(jsp, BorderLayout.CENTER);
-	this.setSize(200, altezza);
+	this.setSize(500, altezza);
 	
 	
 //	panelButton.setVisible(true);
-	panelButton.setSize(200, altezza);
+	panelButton.setSize(500, altezza);
 	
 	this.setVisible(true);	
 	}

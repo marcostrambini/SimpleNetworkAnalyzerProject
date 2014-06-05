@@ -21,9 +21,10 @@ public class NetStatusDevice extends JPanel{
 	
 	final ImageIcon iconRowRed = new ImageIcon("icons/freccia_rossa_down20.png");
 	final ImageIcon iconRowGreen = new ImageIcon("icons/freccia_verde_up20.png");
+	final JLabel descrizione = new JLabel();
 	JButton button = new JButton();
 	
-	public NetStatusDevice(final String ipAddress){
+	public NetStatusDevice(final String ipAddress, String desc){
 		
 	setLayout(new FlowLayout());
 	
@@ -37,12 +38,15 @@ public class NetStatusDevice extends JPanel{
 	final JLabel label = new JLabel();
 	label.setIcon(iconRowRed);
 	label.setSize(20, 20);
-		
+	descrizione.setText(desc);
+	
+	
 	new ThreadPingIcon(ipAddress, button, label, iconRowGreen, iconRowRed).start(); 
     
 	add(button);
+	add(descrizione);
 	add(label);
-	setSize(180, 50);
+	setSize(200, 50);
 		
 	}
 	
@@ -57,7 +61,7 @@ public class NetStatusDevice extends JPanel{
 		frame.setTitle("Test");
 		frame.setSize(180, 300);
 		frame.setLayout(new GridLayout());
-		NetStatusDevice nsd = new NetStatusDevice("192.168.0.1");
+		NetStatusDevice nsd = new NetStatusDevice("192.168.0.7", "iPad");
 //		NetStatusDevice nsd2 = new NetStatusDevice("192.168.0.7");
 		frame.add(nsd);
 		frame.setVisible(true);
