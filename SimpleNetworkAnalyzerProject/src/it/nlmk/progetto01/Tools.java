@@ -12,6 +12,8 @@ import java.io.PrintWriter;
 import java.net.InetAddress;
 //import java.net.UnknownHostException;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.GregorianCalendar;
 import java.util.NoSuchElementException;
 import java.util.StringTokenizer;
 
@@ -622,7 +624,59 @@ public class Tools {
 		System.out.println("Record in tabella: "+tabella.length);
 	}
 	
-	
+	/**
+	 * metodo che ritorna Data e Ora correnti
+	 * @return
+	 */
+	public String getDataOra(){
+		Calendar cal = new GregorianCalendar();
+		int giorno = cal.get(Calendar.DAY_OF_MONTH);
+		int mese = cal.get(Calendar.MONTH)+1;
+		int anno = cal.get(Calendar.YEAR);
+		String orario;
+		int ore = cal.get(Calendar.HOUR);
+		int minuti = cal.get(Calendar.MINUTE);
+		int secondi = cal.get(Calendar.SECOND);
+
+		if(cal.get(Calendar.AM_PM) == 0)
+			orario = "A.M.";
+		else
+			orario = "P.M.";
+		
+		String giornoString="";
+		String meseString="";
+		String oreString="";
+		String minutiString="";
+		String secondiString="";
+		
+		if (giorno < 9)
+			giornoString = "0"+giorno;
+		else
+			giornoString= ""+giorno;
+		
+		if (mese < 9)
+			meseString = "0"+mese;
+		else
+			meseString= ""+mese;
+		
+		if (ore < 9)
+			oreString = "0"+ore;
+		else
+			oreString= ""+ore;
+		
+		if (minuti < 9)
+			minutiString = "0"+minuti;
+		else
+			minutiString= ""+minuti;
+		
+		if (secondi < 9)
+			giornoString = "0"+giorno;
+		else
+			secondiString= ""+secondi;
+		
+		String dataOra = anno + "/" + meseString + "/" + giornoString + " - " +oreString + ":" + minutiString + ":" + secondiString + " " + orario;
+		return dataOra;
+	}
 	
 	
 	public static void main(String[] args) throws IOException{
@@ -643,6 +697,8 @@ public class Tools {
 		System.out.println("esiste gruppo04.txt :"+tools.esisteFile("gruppo04.txt"));
 		System.out.println("esiste gruppo05.txt :"+tools.esisteFile("gruppo05.txt"));
 		tools.leggiFile("gruppoEsclusi.txt");
+		
+		System.out.println(tools.getDataOra());
 	
 	}
 	
