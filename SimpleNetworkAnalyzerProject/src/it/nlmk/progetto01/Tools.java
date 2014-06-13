@@ -384,6 +384,98 @@ public class Tools {
 		}
 	
 	/**
+	 * Funzione che ritorna in forma tabellare il contenuto di un file opportunamente formattato
+	 * @return 
+	 * @throws IOException 
+	 */
+	public String[][] getTabellaDaFile(String nomeFile) throws IOException 	{
+
+		if (!esisteFile(nomeFile)){
+			System.out.println("il file non esiste");
+			return null;
+		} else {
+
+
+			ArrayList<String> listaRigheFile;
+			String[] arrayRigheFile;
+
+			listaRigheFile = leggiFileRitorna(nomeFile);
+			arrayRigheFile = listToArray(listaRigheFile); 
+			int nColonne = 0;
+
+			try{
+				StringTokenizer st = new StringTokenizer(arrayRigheFile[0]);
+				for(int i=1; i<10; i++){
+					st.nextToken();
+					nColonne = i;
+
+				}
+
+			}catch(Exception e){
+
+			};
+
+//			System.out.println("N Colonne = "+nColonne);
+
+			String[][] tabellaFile = new String[arrayRigheFile.length][nColonne];
+
+			for (int r = 0; r < arrayRigheFile.length ; r++){
+				StringTokenizer st = new StringTokenizer(arrayRigheFile[r]);
+				for(int c=0; c<nColonne; c++){
+					tabellaFile[r][c] = st.nextToken();	
+
+				}
+
+
+			}
+			return tabellaFile;		
+		}
+
+	}
+	
+	/**
+	 * Funzione che ritorna il numero delle colonne di un file
+	 * @return 
+	 * @throws IOException 
+	 */
+	public int getColoneTabellaDaFile(String nomeFile) throws IOException 	{
+
+		if (!esisteFile(nomeFile)){
+			System.out.println("il file non esiste");
+			return 0;
+		} else {
+
+
+			ArrayList<String> listaRigheFile;
+			String[] arrayRigheFile;
+
+			listaRigheFile = leggiFileRitorna(nomeFile);
+			arrayRigheFile = listToArray(listaRigheFile); 
+			int nColonne = 0;
+
+			try{
+				StringTokenizer st = new StringTokenizer(arrayRigheFile[0]);
+				for(int i=1; i<10; i++){
+					st.nextToken();
+					nColonne = i;
+
+				}
+
+			}catch(Exception e){
+
+			};
+
+//			System.out.println("N Colonne = "+nColonne);
+
+	
+			return nColonne;
+
+			}
+		}
+	
+	
+	
+	/**
 	 * metodo che ritorna la tabella degli ip classificati in base ad un filtro
 	 * @param filtro
 	 * @param tabella
@@ -715,26 +807,18 @@ public class Tools {
 	}
 	
 	public static void main(String[] args) throws IOException{
-		String[][] test;
-		Tools tools = new Tools();
-		test = tools.getTabellaClassificazione();
-		for(int i =0; i<test.length;i++){
-			System.out.println();
-			for(int c=0; c<3; c++)	
-				System.out.print(test[i][c]);
-		}
-		System.out.println();
-		tools.scriviFileGruppi(test);
-		System.out.println("esiste gruppoEsclusi.txt :"+tools.esisteFile("gruppoEsclusi.txt"));
-		System.out.println("esiste gruppo01.txt :"+tools.esisteFile("gruppo01.txt"));
-		System.out.println("esiste gruppo02.txt :"+tools.esisteFile("gruppo02.txt"));
-		System.out.println("esiste gruppo03.txt :"+tools.esisteFile("gruppo03.txt"));
-		System.out.println("esiste gruppo04.txt :"+tools.esisteFile("gruppo04.txt"));
-		System.out.println("esiste gruppo05.txt :"+tools.esisteFile("gruppo05.txt"));
-		tools.leggiFile("gruppoEsclusi.txt");
 		
-		System.out.println(tools.getDataOra());
-	
+		Tools tools = new Tools();
+		String nomeFile = "flags.txt";
+		tools.creaFile(nomeFile);
+		String[][] test = tools.getTabellaDaFile(nomeFile);
+		
+		for(int r=0; r<test.length; r++){
+			for(int c=0; c<tools.getColoneTabellaDaFile(nomeFile); c++){
+				System.out.print(test[r][c]+" ");
+			}
+		System.out.println();
+	    }
 	}
 	
 }
