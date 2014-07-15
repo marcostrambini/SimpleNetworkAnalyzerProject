@@ -2,6 +2,7 @@ package Grafiche;
 
 import it.nlmk.progetto01.Configurazione;
 import it.nlmk.progetto01.Flags;
+import it.nlmk.progetto01.ThreadRepository;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -79,6 +80,8 @@ public class InterfacciaUtente extends JFrame {
 	public InterfacciaUtente() {
 //		this.larghezza = larghezza;
 //		this.altezza = altezza;
+		
+		
 		Flags flags = new Flags();
 		Toolkit mioToolkit = Toolkit.getDefaultToolkit();
 		Dimension dimensioniSchermo = mioToolkit.getScreenSize();
@@ -117,54 +120,16 @@ public class InterfacciaUtente extends JFrame {
 	private JPanel creaPannelloComandi(int larghezzaFrame, int altezzaFrame) {
 		int larghezzaPannelloComandi = ((larghezzaFrame / 10) * 2);
 		final JPanel pannelloComandi = new JPanel();
-//		final JButton buttonConfig = new JButton("Configurazione"); ****
-//		final JButton buttonAvvio = new JButton("Avvio APP"); ****
-		// final JButton button01 = new JButton();
-		// final JButton button02 = new JButton();
-		
+
 		
 		
 		pannelloComandi.setLayout(new GridLayout(2, 1));
 		pannelloComandi.setSize(300, 200);
-		// pannelloComandi.setBorder(BorderFactory.createLineBorder(Color.BLUE,1));
-		// pannelloComandi.setBounds(0, 0, larghezzaPannelloComandi ,
-		// altezzaFrame);
-		// pannelloComandi.setBackground(Color.WHITE);
+
 
 		pannelloComandi.add(buttonAvvio);
 		pannelloComandi.add(buttonConfig);
-		// pannelloComandi.add(button01);
-		// pannelloComandi.add(button02);
 
-		// button01.setVisible(false);
-		// button02.setVisible(false);
-
-		// ActionListener listenerGestGroupst = new ActionListener() {
-		//
-		// @Override
-		// public void actionPerformed(ActionEvent e) {
-		// button02.setText("click sul 2");
-		// button02.setVisible(true);
-		// button01.setVisible(false);
-		// try {
-		// PannelloGestioneGruppi pgc = new PannelloGestioneGruppi();
-		// } catch (IOException e1) {
-		// System.out.println("problemi con la creazione del PannelloGestioneGruppi");
-		// }
-		// }
-		// };
-		//
-		// ActionListener listenerConfig = new ActionListener() {
-		//
-		// @Override
-		// public void actionPerformed(ActionEvent e) {
-		// button01.setText("click sul primo");
-		// button01.setVisible(true);
-		// button02.setVisible(false);
-		// PannelloInserimentoConfig pic = new PannelloInserimentoConfig();
-		//
-		// }
-		// };
 
 		ActionListener listenerGenerico = new ActionListener() {
 

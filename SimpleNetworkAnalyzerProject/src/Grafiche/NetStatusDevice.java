@@ -1,6 +1,7 @@
 package Grafiche;
 
 import it.nlmk.progetto01.ThreadPingIcon;
+import it.nlmk.progetto01.ThreadRepository;
 
 import java.awt.Color;
 import java.awt.Dimension;
@@ -17,6 +18,12 @@ import javax.swing.JPanel;
 
 import org.omg.CORBA.Current;
 
+/**
+ * classe che costruisce l'oggetto composto da JButton che rappresenta l'ip + JLabel per la descrizione + JLabel con icona
+ * all'oggetto viene associata un Thread che esegue il ping e modifica colore e Icon in base all'esito
+ * @author marcostrambini
+ *
+ */
 public class NetStatusDevice extends JPanel{
 	
 	final ImageIcon iconRowRed = new ImageIcon("icons/freccia_rossa_down20.png");
@@ -28,7 +35,7 @@ public class NetStatusDevice extends JPanel{
 		
 	setLayout(new FlowLayout());
 	
-//	setDefaultCloseOperation(EXIT_ON_CLOSE);
+
 	setVisible(true);
 	
 	button.setText(ipAddress);
@@ -40,14 +47,23 @@ public class NetStatusDevice extends JPanel{
 	label.setSize(20, 20);
 	descrizione.setText(desc);
 	
+	final ThreadPingIcon tpi = 	new ThreadPingIcon(ipAddress, button, label, iconRowGreen, iconRowRed); 
+	tpi.setName(ipAddress);
+	ThreadRepository.Pool(tpi);
+	tpi.start();
+//	System.out.println("**** "+ tpi.getState());
+//	tpi.interrupt();
+//	System.out.println("**** "+ tpi.getState());
 	
-	new ThreadPingIcon(ipAddress, button, label, iconRowGreen, iconRowRed).start(); 
-    
+	
+
+	
 	add(button);
 	add(descrizione);
 	add(label);
 	setSize(200, 50);
 		
+	System.out.println("numero thread: "+ ThreadRepository.Count() + "nome thread: "+tpi.getName());
 	}
 	
 	
@@ -61,11 +77,11 @@ public class NetStatusDevice extends JPanel{
 		frame.setTitle("Test");
 		frame.setSize(180, 300);
 		frame.setLayout(new GridLayout());
-		NetStatusDevice nsd = new NetStatusDevice("192.168.0.7", "iPad");
+		NetStatusDevice nsd = new NetStatusDevice("192.168.0.11", "iPad");
 //		NetStatusDevice nsd2 = new NetStatusDevice("192.168.0.7");
 		frame.add(nsd);
 		frame.setVisible(true);
 	
 	}
-
+	
 }

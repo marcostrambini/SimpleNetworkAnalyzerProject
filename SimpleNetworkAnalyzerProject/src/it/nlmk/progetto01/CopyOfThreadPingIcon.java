@@ -11,7 +11,7 @@ import javax.swing.RepaintManager;
 
 import Test.ExitFrameTest;
 
-public class ThreadPingIcon extends Thread {
+public class CopyOfThreadPingIcon extends Thread {
 
 	Tools tools = new Tools();
 	JButton button;
@@ -25,16 +25,16 @@ public class ThreadPingIcon extends Thread {
 	boolean ping = false;
 	String messaggio ="";
     
-	public ThreadPingIcon(String str) {
+	public CopyOfThreadPingIcon(String str) {
 		super(str);
 	}
 	
-	public ThreadPingIcon(String str, JButton b){
+	public CopyOfThreadPingIcon(String str, JButton b){
 		super(str);
 		this.button = b;
 	}
 	
-	public ThreadPingIcon(String str, JButton b, JLabel label,  ImageIcon icon1, ImageIcon icon2){
+	public CopyOfThreadPingIcon(String str, JButton b, JLabel label,  ImageIcon icon1, ImageIcon icon2){
 		super(str);
 		this.button = b;
 		this.label = label;
@@ -43,36 +43,17 @@ public class ThreadPingIcon extends Thread {
 		this.icon2 = icon2;
 	}
 	
-	public ThreadPingIcon(String str, JLabel l){
+	public CopyOfThreadPingIcon(String str, JLabel l){
 		super(str);
 		this.label = l;
 	}
-	
-	
-	public  synchronized void stopMe() {
-		while(this.isAlive()){
-		try {
-			Thread.sleep(500);
-			this.interrupt();
-			this.join();
-			System.out.println("sono passato dalla variazione di sleep");
-			
-		} catch (InterruptedException e) {
-		System.out.println("non riesco ad addormentare la thread : "+this.getName() + " - ID: "+this.getId());
-		}
+
+	public void run() {
 		
-
-		System.out.println("Stato della thread: "+ this.getName()+ " = "+this.getState());
-		}
-	}
-
-
-	public synchronized void run() {
-		
-		while(!Thread.currentThread().isInterrupted() ){
+		while(true){
 			try {
 				if(tools.ping(getName())){
-					sleep(3000);
+					
 					ping = true;
 					messaggio = tools.getStatusCode(1, getName());
 					
@@ -91,7 +72,7 @@ public class ThreadPingIcon extends Thread {
 					button.repaint();
 					
 					System.out.println(getName() + " : " + tools.ping(getName())+" --> verde");
-					
+					sleep(3000);
 				}else{
 					
 					ping = false;
@@ -120,9 +101,6 @@ public class ThreadPingIcon extends Thread {
 	}
 
 	}
-	
-	
-	
 
 }
 

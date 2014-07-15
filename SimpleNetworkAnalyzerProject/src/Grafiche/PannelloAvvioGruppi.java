@@ -1,5 +1,6 @@
 package Grafiche;
 
+import it.nlmk.progetto01.ThreadRepository;
 import it.nlmk.progetto01.Tools;
 
 import java.awt.GridLayout;
@@ -14,12 +15,18 @@ import java.util.ArrayList;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 
+/**
+ * classe che costruisce il pannello con tanti JButton quanti sono i gruppi 
+ * cliccando sui JButton viene aperta una finestra con la lista degli ip contenuti e viene eseguito il controllo di risposta al ping
+ * @author marcostrambini
+ *
+ */
 public class PannelloAvvioGruppi extends JFrame {
 
 	InterfacciaUtente iu;
 	
 	public PannelloAvvioGruppi(final InterfacciaUtente iu) throws IOException{
-//	public PannelloAvvioGruppi() throws IOException{	
+
 		this.iu = iu;
 		final Tools tools = new Tools();
 		String nomeFile = "groups.ini";
@@ -45,6 +52,8 @@ public class PannelloAvvioGruppi extends JFrame {
 				JButton source = (JButton)ev.getSource();
 				
 				try {
+					
+					
 					String[][] tabFiltrata = tools.getTabellaFiltrata(tools.getGruppoAllaPosizione(tools.getPosizioneDelGruppo(source.getText())), tools.getTabellaClassificazione());
 					new PannelloMonitorElementiConNetStatus(tabFiltrata, source.getText());
 				} catch (IOException e) {
@@ -72,6 +81,9 @@ public class PannelloAvvioGruppi extends JFrame {
 				iu.setEnableButtonConfig();
 				iu.setLabelButtonAvvio("Avvio APP");
 				System.out.println("chiuso");
+				
+				System.out.println("Numero di Thread nell'array: "+ThreadRepository.Count());
+				ThreadRepository.stopAllThread();
 
 			}
 			
