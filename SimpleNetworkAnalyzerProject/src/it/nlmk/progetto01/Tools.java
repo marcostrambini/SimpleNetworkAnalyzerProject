@@ -1,5 +1,6 @@
 package it.nlmk.progetto01;
 
+import java.awt.Dimension;
 import java.io.BufferedReader;
 
 import java.io.FileNotFoundException;
@@ -8,6 +9,7 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.io.File;
 import java.io.PrintWriter;
+import java.io.ObjectInputStream.GetField;
 //import java.io.Reader;
 import java.net.InetAddress;
 //import java.net.UnknownHostException;
@@ -16,6 +18,8 @@ import java.util.Calendar;
 import java.util.GregorianCalendar;
 import java.util.NoSuchElementException;
 import java.util.StringTokenizer;
+
+import javax.swing.JTable;
 
 import Grafiche.FrameLog;
 
@@ -158,7 +162,7 @@ public class Tools {
 	 * @param nomeFile
 	 * @throws FileNotFoundException
 	 */
-	public void clearFile(String nomeFile) throws FileNotFoundException{
+	public static void clearFile(String nomeFile) throws FileNotFoundException{
 		PrintWriter pw = new PrintWriter(nomeFile); 
 		pw.close();
 		
@@ -527,6 +531,12 @@ public class Tools {
 	}
 	
 	
+	public JTable getJTableOfGroups(String[][] tabella){
+		String[] campi = {"Indirizzo IP", "Descrizione"};
+		JTable table = new JTable(tabella, campi);
+		table.setPreferredScrollableViewportSize(new Dimension(500, 500));
+		return table;
+	}
 	
 	
 	public void scriviFileGruppi(String[][] tabellaClassificazione) throws IOException{
@@ -804,6 +814,15 @@ public class Tools {
 		} catch (FileNotFoundException e) {
 			System.out.println("problemi di scrittura su file: "+nomeFile);
 		}
+	}
+	
+	/**
+	 * metodo che pulisce il file di log
+	 * @throws FileNotFoundException
+	 */
+	public static void clearLogStatus() throws FileNotFoundException{
+		String nomeFile = "logStatus.txt";
+		clearFile(nomeFile);
 	}
 	
 	public static void main(String[] args) throws IOException{

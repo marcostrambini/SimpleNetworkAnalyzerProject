@@ -43,7 +43,7 @@ public class ThreadRepository
     		System.out.println(i+" ------------------------------------------------------------------------");
     		System.out.println("Thread da gestire: " +list.get(i).getName() + " - ID: "+list.get(i).getId());
     		//    		if(!Thread.interrupted()){
-    		list.get(i).stopMe();
+    		list.get(i).interrupt();
     		if(list.get(i).isInterrupted())
     			System.out.println("Interrotta Thread: "+list.get(i).getName()+" - ID: "+list.get(i).getId());
     		else
@@ -71,7 +71,7 @@ public class ThreadRepository
     		if(list.get(i).getName().equals(name)){
 
     			if(!Thread.interrupted()){
-    				list.get(i).stopMe();
+    				list.get(i).interrupt();
     				System.out.println("Interrotta Thread: "+list.get(i).getName()+" - ID: "+list.get(i).getId());
 
     			}
@@ -86,7 +86,7 @@ public class ThreadRepository
     public static synchronized void startAllThread() {
 
     	for(int i=0; i<list.size();i++){
-    		list.get(i).start();
+    		new ThreadStarter(list.get(i));
 
     	}
     }

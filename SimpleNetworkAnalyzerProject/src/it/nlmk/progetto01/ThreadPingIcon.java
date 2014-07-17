@@ -109,11 +109,11 @@ public class ThreadPingIcon extends Thread {
 					
 					button.repaint();
 					System.out.println(getName() + " : " + tools.ping(getName())+" --> rosso");
-				sleep(3000);
+//				sleep(3000);
 				}
-			} catch (IOException | InterruptedException e) {
-				// TODO Auto-generated catch block
-//				e.printStackTrace();
+			} catch (InterruptedException | IOException e) {
+				
+				throw new RuntimeException("Thread interrupted..."+e);  
 			}
 			
 

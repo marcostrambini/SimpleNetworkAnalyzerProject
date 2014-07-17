@@ -50,12 +50,15 @@ public class NetStatusDevice extends JPanel{
 	final ThreadPingIcon tpi = 	new ThreadPingIcon(ipAddress, button, label, iconRowGreen, iconRowRed); 
 	tpi.setName(ipAddress);
 	ThreadRepository.Pool(tpi);
+//	ThreadRepository.startAllThread();
 	tpi.start();
+//	tpi.interrupt();
+	
 //	System.out.println("**** "+ tpi.getState());
 //	tpi.interrupt();
 //	System.out.println("**** "+ tpi.getState());
-	
-	
+//	tpi.start();
+//	System.out.println("**** "+ tpi.getState());
 
 	
 	add(button);

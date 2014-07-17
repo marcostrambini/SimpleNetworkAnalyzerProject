@@ -2,6 +2,7 @@ package Grafiche;
 
 import it.nlmk.progetto01.Configurazione;
 import it.nlmk.progetto01.Flags;
+import it.nlmk.progetto01.FrameRepository;
 import it.nlmk.progetto01.ThreadRepository;
 
 import java.awt.BorderLayout;
@@ -137,22 +138,44 @@ public class InterfacciaUtente extends JFrame {
 			public void actionPerformed(ActionEvent ev) {
 				JButton source = (JButton) ev.getSource();
 				if (source == buttonAvvio) {
+
+					
 					FrameLog.setTextArea("cliccato su buttonAvvio");
+					
 					if (source.getText() == "Avvio APP") {
 						buttonAvvio.setText("Stop APP");
-
 						buttonConfig.setEnabled(false);
 						try {
 							PannelloAvvioGruppi pag = new PannelloAvvioGruppi(InterfacciaUtente.this);
+							FrameRepository.add(pag);
 						} catch (IOException e) {
 							FrameLog.setTextArea("problemi di apertura gruppi");
 						}
-					} else {
+					} 
+					
+					else {
 						buttonAvvio.setText("Avvio APP");
-
 						buttonConfig.setEnabled(true);
-
+						ThreadRepository.stopAllThread();
+						FrameRepository.closeAllFrame();
+						
 					}
+					
+//					if (source.getText() == "Stop APP") {
+//						buttonAvvio.setText("Avvio APP");
+//						buttonConfig.setEnabled(true);
+//						ThreadRepository.stopAllThread();
+//						FrameRepository.closeAllFrame();
+//					} 
+					
+//					else {
+//						buttonAvvio.setText("Stop APP");
+//						buttonConfig.setEnabled(true);
+//					}
+					
+					
+					
+					
 				}
 
 				if (source == buttonConfig) {
@@ -161,6 +184,7 @@ public class InterfacciaUtente extends JFrame {
 						
 						buttonAvvio.setEnabled(false);
 						PannelloConfigurazione pconfig = new PannelloConfigurazione(InterfacciaUtente.this);
+						FrameRepository.add(pconfig);
 						}else{
 							System.out.println("finestra gia' aperta");
 						}

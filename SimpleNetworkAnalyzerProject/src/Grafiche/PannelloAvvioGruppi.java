@@ -1,5 +1,6 @@
 package Grafiche;
 
+import it.nlmk.progetto01.FrameRepository;
 import it.nlmk.progetto01.ThreadRepository;
 import it.nlmk.progetto01.Tools;
 
@@ -55,7 +56,8 @@ public class PannelloAvvioGruppi extends JFrame {
 					
 					
 					String[][] tabFiltrata = tools.getTabellaFiltrata(tools.getGruppoAllaPosizione(tools.getPosizioneDelGruppo(source.getText())), tools.getTabellaClassificazione());
-					new PannelloMonitorElementiConNetStatus(tabFiltrata, source.getText());
+//					FrameRepository.add(new PannelloMonitorElementiConNetStatus(tabFiltrata, source.getText()));
+					FrameRepository.add(new PannelloMonitorElementiConNetStatusJTable(tabFiltrata, source.getText(), PannelloAvvioGruppi.this, source));
 				} catch (IOException e) {
 				
 					e.printStackTrace();
