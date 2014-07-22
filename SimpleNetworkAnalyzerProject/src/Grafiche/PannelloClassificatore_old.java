@@ -9,7 +9,6 @@ import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.util.ArrayList;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -18,7 +17,6 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 
 import it.nlmk.progetto01.Configurazione;
-import it.nlmk.progetto01.Init;
 import it.nlmk.progetto01.Tools;
 
 
@@ -27,19 +25,12 @@ import it.nlmk.progetto01.Tools;
  * @author marcostrambini
  *
  */
-public class PannelloClassificatore extends JFrame{
+public class PannelloClassificatore_old extends JFrame{
 
 	
 	PannelloConfigurazione pc;
-	public JLabel labelInfo = new JLabel();
-	public JButton buttonConferma = new JButton("Conferma");
-	public JButton buttonRecupera = new JButton("recupera esistente");
 	
-	public JPanel panelTesti = new JPanel();
-	public JPanel panelCentro = new JPanel();
-	public JPanel panelBottoni = new JPanel();
-	
-	public PannelloClassificatore(final PannelloConfigurazione pc) throws IOException{
+	public PannelloClassificatore_old(final PannelloConfigurazione pc) throws IOException{
 		this.pc = pc;
 		
 		
@@ -47,8 +38,9 @@ public class PannelloClassificatore extends JFrame{
 		int totIp = configurazione.getNumeroDiIpRange();
 		String[] listaIp = configurazione.getListaIp();
 		
-		
-		
+		final JLabel labelInfo = new JLabel();
+		JButton buttonConferma = new JButton("Conferma");
+				
 		this.setTitle("Classificatore");
 		
 		int colonne = 0;
@@ -71,7 +63,9 @@ public class PannelloClassificatore extends JFrame{
 		FrameLog.setTextArea("righe: "+righe);
 		FrameLog.setTextArea("colonne: "+colonne);
 		
-
+		JPanel panelTesti = new JPanel();
+		JPanel panelCentro = new JPanel();
+		JPanel panelBottoni = new JPanel();
 		
 		
 //		this.setLayout(new GridLayout((righe+3),colonne));
@@ -80,15 +74,15 @@ public class PannelloClassificatore extends JFrame{
 		panelTesti.setSize((400*colonne), 50);
 		panelBottoni.setSize((400*colonne), 50);
 		panelBottoni.setLayout(new GridLayout(1,3));
-		panelBottoni.add(buttonRecupera);
-
+		panelBottoni.add(new JButton("Test1"));
+		panelBottoni.add(new JButton("Test2"));
 		panelBottoni.add(buttonConferma);
 		
 		panelCentro.setLayout(new GridLayout(totIp,1));
 		
 		this.setLayout(new BorderLayout());
 
-		this.setSize(700, panelTesti.getHeight()+panelBottoni.getHeight()+(righe*30));
+		this.setSize(400, panelTesti.getHeight()+panelBottoni.getHeight()+(righe*25));
 		
 		this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 //		Point point = new Point(pc.getPositionX()+pc.getSize().width, pc.getPositionY());
@@ -100,29 +94,24 @@ public class PannelloClassificatore extends JFrame{
 		
 		final Classificatore[] listaClassificatori = new Classificatore[totIp];
 		
-		
-		//aggiungio i classificatori al panelCentro
 		for (int i=0; i < totIp; i++){
 			Classificatore classificatore = new Classificatore(listaIp[i]);
 			panelCentro.add(classificatore);
 			listaClassificatori[i] = classificatore;
 		}
-		final JScrollPane jsp = new JScrollPane(panelCentro);
+		
+		JScrollPane jsp = new JScrollPane(panelCentro);
 		jsp.setSize(400, totIp*25);
 		
 		
 		ActionListener listener = new ActionListener() {
 			
 			@Override
-			public void actionPerformed(ActionEvent ev) {
-			JButton source = (JButton)ev.getSource();
-			if(source == buttonConferma){
-			
+			public void actionPerformed(ActionEvent arg0) {
 				// TODO Auto-generated method stub
 			String[] listaCsv = new String[listaClassificatori.length];
 			String[] listaTxt = new String[listaClassificatori.length];
 			Tools tools = new Tools();
-			ArrayList<String> arrayListTemp = new ArrayList<String>();
 			for(int i=0; i<listaClassificatori.length;i++){
 			String textFieldVal = listaClassificatori[i].getTextField();
 			if (!listaClassificatori[i].getTextField().isEmpty())
@@ -133,13 +122,9 @@ public class PannelloClassificatore extends JFrame{
 				
 			listaCsv[i] = (listaClassificatori[i].getLabel() + ","+ listaClassificatori[i].getValComboBox() + "," + textFieldVal);
 			listaTxt[i] = (listaClassificatori[i].getLabel() + " - "+ listaClassificatori[i].getValComboBox() + " - " + textFieldVal);
-			arrayListTemp.add(listaTxt[i]);
-			}
 			
+			}
 			try {
-				
-				Init.resetListaClassificazione();
-				Init.listaClassificazione = arrayListTemp;
 				tools.creaFile("classificazione.csv");
 				tools.creaFile("classificazione.txt");
 				tools.clearFile("classificazione.csv");
@@ -160,41 +145,9 @@ public class PannelloClassificatore extends JFrame{
 				labelInfo.setText("Problemi di lettura del file .txt");
 			}
 			}
-			
-			
-			if(source == buttonRecupera){
-				
-				panelCentro.removeAll();
-				
-				
-				Tools tool = new Tools();
-				String[][] listaClassificata = tool.getTabellaClassificazioneDaArrayList();
-				panelCentro.setLayout(new GridLayout(Init.listaClassificazione.size(),1));
-				panelCentro.setSize(400, Init.listaClassificazione.size()*25);
-				for (int i=0; i < Init.listaClassificazione.size(); i++){
-					
-					Classificatore classificatore = new Classificatore(listaClassificata[i][0], tool.getPosizioneDelGruppo(listaClassificata[i][1]), listaClassificata[i][2]);
-					panelCentro.add(classificatore);
-//					listaClassificatori[i] = classificatore;
-				}
-//				JScrollPane jsp = new JScrollPane(panelCentro);
-				jsp.setSize(400, Init.listaClassificazione.size()*25);
-				
-				
-				
-				panelCentro.invalidate();
-				panelCentro.validate();
-				panelCentro.repaint();
-				invalidate();
-				validate();
-				repaint();
-				
-			}
-			}
 		};
 		
 		buttonConferma.addActionListener(listener);
-		buttonRecupera.addActionListener(listener);
 		
 		this.add(panelTesti,BorderLayout.NORTH);
 		this.add(jsp, BorderLayout.CENTER);

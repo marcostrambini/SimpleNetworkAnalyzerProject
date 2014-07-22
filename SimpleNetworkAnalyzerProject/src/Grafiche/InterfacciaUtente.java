@@ -42,6 +42,9 @@ public class InterfacciaUtente extends JFrame {
 	private JButton buttonConfig = new JButton("Configurazione");
 	private JButton buttonAvvio = new JButton("Avvio APP");
 	
+	
+	
+	
 	public void setEnableButtonConfig(){
 		this.buttonConfig.setEnabled(true);
 	}

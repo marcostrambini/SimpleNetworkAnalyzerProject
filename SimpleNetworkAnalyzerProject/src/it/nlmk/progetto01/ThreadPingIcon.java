@@ -9,6 +9,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.RepaintManager;
 
+import Grafiche.FrameLog;
 import Test.ExitFrameTest;
 
 public class ThreadPingIcon extends Thread {
@@ -80,6 +81,7 @@ public class ThreadPingIcon extends Thread {
 						
 						System.out.println(messaggio);
 						tools.scriviLogStatus(messaggio);
+						FrameLog.setTextArea(messaggio);
 						giaScrittoON = true;
 						giaScrittoOFF = false;
 						
@@ -99,6 +101,7 @@ public class ThreadPingIcon extends Thread {
 					if(!giaScrittoOFF){
 						System.out.println(messaggio);
 						tools.scriviLogStatus(messaggio);
+						FrameLog.setTextArea(messaggio);
 						giaScrittoOFF = true;
 						giaScrittoON = false;
 					} 	
@@ -112,7 +115,7 @@ public class ThreadPingIcon extends Thread {
 //				sleep(3000);
 				}
 			} catch (InterruptedException | IOException e) {
-				
+				if(ThreadRepository.flagGoInterrupt)
 				throw new RuntimeException("Thread interrupted..."+e);  
 			}
 			

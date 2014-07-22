@@ -1,6 +1,7 @@
 package Grafiche;
 
 import it.nlmk.progetto01.FrameRepository;
+import it.nlmk.progetto01.Init;
 import it.nlmk.progetto01.ThreadRepository;
 import it.nlmk.progetto01.Tools;
 
@@ -15,6 +16,7 @@ import java.util.ArrayList;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 
 /**
  * classe che costruisce il pannello con tanti JButton quanti sono i gruppi 
@@ -25,9 +27,10 @@ import javax.swing.JFrame;
 public class PannelloAvvioGruppi extends JFrame {
 
 	InterfacciaUtente iu;
+	private JButton buttonAvviaTutti = new JButton("Avvia Tutti");
 	
 	public PannelloAvvioGruppi(final InterfacciaUtente iu) throws IOException{
-
+		ThreadRepository.flagGoInterrupt = false;
 		this.iu = iu;
 		final Tools tools = new Tools();
 		String nomeFile = "groups.ini";
@@ -40,9 +43,9 @@ public class PannelloAvvioGruppi extends JFrame {
 		
 		
 		ArrayList<String> listaGruppi = tools.leggiFileRitorna(nomeFile);
-		setLayout(new GridLayout((listaGruppi.size()-1) , 1));
+		setLayout(new GridLayout((listaGruppi.size()+1) , 1));
 		
-		setSize(300, (listaGruppi.size()-1)*50);
+		setSize(300, ((listaGruppi.size()-1)*50)+110);
 		System.out.println("size: "+listaGruppi.size());
 		
 		
@@ -51,29 +54,46 @@ public class PannelloAvvioGruppi extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent ev) {
 				JButton source = (JButton)ev.getSource();
-				
+				if (source != buttonAvviaTutti){
 				try {
-					
+					int id = tools.getPosizioneDelGruppo(source.getText());
 					
 					String[][] tabFiltrata = tools.getTabellaFiltrata(tools.getGruppoAllaPosizione(tools.getPosizioneDelGruppo(source.getText())), tools.getTabellaClassificazione());
-//					FrameRepository.add(new PannelloMonitorElementiConNetStatus(tabFiltrata, source.getText()));
-					FrameRepository.add(new PannelloMonitorElementiConNetStatusJTable(tabFiltrata, source.getText(), PannelloAvvioGruppi.this, source));
+					FrameRepository.add(new PannelloMonitorElementiConNetStatus(tabFiltrata, source.getText(),PannelloAvvioGruppi.this, source, id));
+//					FrameRepository.add(new PannelloMonitorElementiConNetStatusJTable(tabFiltrata, source.getText(), PannelloAvvioGruppi.this, source));
 				} catch (IOException e) {
 				
 					e.printStackTrace();
 				}
 			
+				}
 				
+				if(source == buttonAvviaTutti){
+					
+					for(int i=0;i<(Init.listaGruppi.size()-1);i++){
+					String[][] tabFiltrata = tools.getTabellaFiltrata(Init.listaGruppi.get(i), tools.getTabellaClassificazioneDaArrayList());
+					FrameRepository.add(new PannelloMonitorElementiConNetStatus(tabFiltrata, Init.listaGruppi.get(i),PannelloAvvioGruppi.this, source, i));
+					}
+					
+				}
 			}
 		};
 		
 		
+		
+		
 		for(int i = 1; i<listaGruppi.size();i++){
 		JButton button = new JButton(listaGruppi.get(i));
+		
+		System.out.println("numero gruppi nell'array statico: " +Init.listaGruppi.size());
+		
 		button.addActionListener(listener);
+		buttonAvviaTutti.addActionListener(listener);
 			add(button);
 		}
 		
+		add(new JLabel());
+		add(buttonAvviaTutti);
 		
 		
 		
@@ -85,6 +105,7 @@ public class PannelloAvvioGruppi extends JFrame {
 				System.out.println("chiuso");
 				
 				System.out.println("Numero di Thread nell'array: "+ThreadRepository.Count());
+				ThreadRepository.flagGoInterrupt = true;
 				ThreadRepository.stopAllThread();
 
 			}

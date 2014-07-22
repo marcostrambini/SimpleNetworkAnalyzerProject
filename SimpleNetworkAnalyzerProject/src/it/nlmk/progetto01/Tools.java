@@ -31,6 +31,9 @@ import Grafiche.FrameLog;
  */
 public class Tools {
 
+	public static ArrayList<String> repoString = new ArrayList<String>();
+	
+	
 	/**
 	 * metodo che esegue un ping passando come parametro indirizzo ip
 	 * @param ipAddress
@@ -378,6 +381,34 @@ public class Tools {
 		
 				for (int r = 0; r < arrayClassificazione.length ; r++){
 					StringTokenizer st = new StringTokenizer(arrayClassificazione[r]);
+					tabellaConfigurazione[r][0] = st.nextToken();	
+					st.nextToken();
+					tabellaConfigurazione[r][1] = st.nextToken();
+					st.nextToken();
+					tabellaConfigurazione[r][2] = st.nextToken();
+				}
+				return tabellaConfigurazione;
+		}
+	
+	/**
+	 * Funzione che ritorna la tabella degli ip classificati dall'ArrayList statico
+	 * associate
+	 * @return 
+	 * @throws IOException 
+	 */
+	public String[][] getTabellaClassificazioneDaArrayList()  	{
+		
+		
+		ArrayList<String> listaClassificazione;
+		
+
+//		listaClassificazione = leggiFileRitorna(nomeFile);
+		listaClassificazione = Init.listaClassificazione;
+		
+		String[][] tabellaConfigurazione = new String[listaClassificazione.size()][3];
+		
+				for (int r = 0; r < listaClassificazione.size() ; r++){
+					StringTokenizer st = new StringTokenizer(listaClassificazione.get(r));
 					tabellaConfigurazione[r][0] = st.nextToken();	
 					st.nextToken();
 					tabellaConfigurazione[r][1] = st.nextToken();
@@ -824,6 +855,8 @@ public class Tools {
 		String nomeFile = "logStatus.txt";
 		clearFile(nomeFile);
 	}
+	
+	
 	
 	public static void main(String[] args) throws IOException{
 		

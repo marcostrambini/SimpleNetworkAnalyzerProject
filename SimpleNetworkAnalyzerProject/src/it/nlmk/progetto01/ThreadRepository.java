@@ -9,7 +9,10 @@ import java.util.ArrayList;
  */
 public class ThreadRepository
 {
-    /**
+
+	public static boolean flagGoInterrupt = false;
+	
+	/**
      * ArrayList di ThreadPingIcon
      */
 	private static ArrayList<ThreadPingIcon> list = new ArrayList<ThreadPingIcon>();
@@ -37,7 +40,7 @@ public class ThreadRepository
      * metodo che ferma tutte le thread presenti nell'ArrayList
      */
     public static void stopAllThread() {
-
+    	
     	for(int i=0; i<list.size();i++){
     		
     		System.out.println(i+" ------------------------------------------------------------------------");
@@ -51,6 +54,7 @@ public class ThreadRepository
     		//    		}
     	}
 
+    	
     }
     
     public static void stopAllThread2() {

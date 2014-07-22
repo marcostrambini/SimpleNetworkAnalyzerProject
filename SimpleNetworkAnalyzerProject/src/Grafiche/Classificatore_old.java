@@ -12,17 +12,17 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
-public class Classificatore extends JPanel {
+public class Classificatore_old extends JPanel {
 	String nome ="";
 	JLabel label = new JLabel(nome);
 	JTextField textField = new JTextField();
 	JComboBox comboGruppi = getComboGruppi(getListaParametri());
 	
-	public Classificatore(){
+	public Classificatore_old(){
 		
 	}
 	
-	public Classificatore(String nome){
+	public Classificatore_old(String nome){
 //		this.nome = nome;
 		label.setText(nome);
 		Tools tools = new Tools();
@@ -49,23 +49,6 @@ public class Classificatore extends JPanel {
 //		add(getComboGruppi(parametri));
 		add(textField);
 	
-	}
-	
-	/**
-	 * costruttore per Classificatore esistente
-	 * @param nome
-	 * @param gruppo
-	 * @param descrizione
-	 */
-	public Classificatore(String nome, int indexGruppo, String descrizione){
-		label.setText(nome);
-		comboGruppi.setSelectedIndex(indexGruppo);
-		textField.setText(descrizione);
-		setLayout(new GridLayout(1,3));
-		setSize(400, 45);
-		add(label);
-		add(comboGruppi);
-		add(textField);
 	}
 
 

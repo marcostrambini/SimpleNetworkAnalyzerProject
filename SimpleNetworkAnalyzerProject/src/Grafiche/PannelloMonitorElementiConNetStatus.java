@@ -7,6 +7,9 @@ import it.nlmk.progetto01.Tools;
 import java.awt.BorderLayout;
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
+import java.awt.Point;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.io.IOException;
 import java.lang.management.ThreadInfo;
 import java.util.ArrayList;
@@ -31,15 +34,19 @@ public class PannelloMonitorElementiConNetStatus extends JFrame {
 		
 	}
 	
-    public PannelloMonitorElementiConNetStatus(String[][] listaIp, String nomePannello){
+    public PannelloMonitorElementiConNetStatus(String[][] listaIp, String nomePannello, PannelloAvvioGruppi pag, final JButton button, int id){
 	
+    	Point point = pag.getLocation();
+	setLocation(point.x+pag.getSize().width+ (id*50), point.y+(id*50));
     	
+    	
+    	button.setEnabled(false);
     int altezza =0;
     
     if (listaIp.length<20)
-    	altezza = listaIp.length * 50;
+    	altezza = listaIp.length * 55;
     else
-    	altezza = 1000;
+    	altezza = 1100;
 	
 	
 	setTitle("Gruppo: "+nomePannello);
@@ -78,6 +85,15 @@ public class PannelloMonitorElementiConNetStatus extends JFrame {
 
 	panelButton.setSize(500, altezza);
 	
+	this.addWindowListener(new WindowAdapter() 
+	{
+		public void windowClosing(WindowEvent e){
+			button.setEnabled(true);
+
+		}
+		
+	});
+	
 	this.setVisible(true);	
 	}
 	
@@ -87,24 +103,24 @@ public class PannelloMonitorElementiConNetStatus extends JFrame {
     
     
     
-    public static void main(String[] args) throws IOException{
-    	Tools tools = new Tools();
-    	ArrayList<String> listaGruppi = tools.leggiFileRitorna("groups.ini");
-    	
-    	String[][] tabFiltrata1 = tools.getTabellaFiltrata(listaGruppi.get(1), tools.getTabellaClassificazione());
-    	
-
-    	String ip="";
-    	
-
-    	
-    	for(int i=0; i<tabFiltrata1.length; i++)
-    		System.out.println(tabFiltrata1[i][0]);
-    	
-    	
-    	String[][] tabFiltrata2 = tools.getTabellaFiltrata(tools.getGruppoAllaPosizione(0), tools.getTabellaClassificazione());
-    	PannelloMonitorElementiConNetStatus pme = new PannelloMonitorElementiConNetStatus(tabFiltrata1, tools.getGruppoAllaPosizione(1) );
-    	PannelloMonitorElementiConNetStatus pme2 = new PannelloMonitorElementiConNetStatus(tabFiltrata2, tools.getGruppoAllaPosizione(0));
-    }
+//    public static void main(String[] args) throws IOException{
+//    	Tools tools = new Tools();
+//    	ArrayList<String> listaGruppi = tools.leggiFileRitorna("groups.ini");
+//    	
+//    	String[][] tabFiltrata1 = tools.getTabellaFiltrata(listaGruppi.get(1), tools.getTabellaClassificazione());
+//    	
+//
+//    	String ip="";
+//    	
+//
+//    	
+//    	for(int i=0; i<tabFiltrata1.length; i++)
+//    		System.out.println(tabFiltrata1[i][0]);
+//    	
+//    	
+//    	String[][] tabFiltrata2 = tools.getTabellaFiltrata(tools.getGruppoAllaPosizione(0), tools.getTabellaClassificazione());
+//    	PannelloMonitorElementiConNetStatus pme = new PannelloMonitorElementiConNetStatus(tabFiltrata1, tools.getGruppoAllaPosizione(1) );
+//    	PannelloMonitorElementiConNetStatus pme2 = new PannelloMonitorElementiConNetStatus(tabFiltrata2, tools.getGruppoAllaPosizione(0));
+//    }
 	
 }
