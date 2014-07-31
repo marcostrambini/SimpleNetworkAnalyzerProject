@@ -143,32 +143,5 @@ public class Flags {
 	
 	
 	
-	public static void main(String[] args) throws IOException{
-		Flags flags = new Flags();
-		Tools tools = new Tools();
-
-		
-		try {
-			tools.leggiFile("flags.txt");
-			 
-		} catch (IOException e) {
-		System.out.println("errore lettura");
-		}
-		
-
-		flags.aggiornaFlag("flagPannelloComandi", "false");
-		flags.aggiornaFlag("flagPannelloGestionGruppi", "false");
-		flags.aggiornaFlag("flagClassificatore", "true");
-		
-		try {
-			tools.leggiFile("flags.txt");
-			 
-		} catch (IOException e) {
-		System.out.println("errore lettura");
-		}
 	
-		System.out.println(flags.getStatoFlag("flagClassificatore"));
-		System.out.println(flags.getStatoFlag("flagPannelloComandi"));
-		
-	}
 }

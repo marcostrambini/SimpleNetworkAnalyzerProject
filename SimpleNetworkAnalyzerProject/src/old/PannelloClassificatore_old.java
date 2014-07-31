@@ -1,4 +1,4 @@
-package Grafiche;
+package old;
 
 import java.awt.BorderLayout;
 import java.awt.GridLayout;
@@ -15,6 +15,10 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
+
+import Grafiche.Classificatore;
+import Grafiche.FrameLog;
+import Grafiche.PannelloConfigurazione;
 
 import it.nlmk.progetto01.Configurazione;
 import it.nlmk.progetto01.Tools;

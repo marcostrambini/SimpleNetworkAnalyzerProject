@@ -1,5 +1,6 @@
 package Grafiche;
 
+import java.awt.Color;
 import java.awt.Component;
 import java.util.ArrayList;
 
@@ -36,13 +37,17 @@ public class FrameLog extends JFrame {
 	
 	public static void setTextArea(String value){
 		String temp = textArea.getText();
-		textArea.setText(temp + "\n" + value);
+		textArea.setText(value + "\n" + temp);
+		textArea.setBackground(Color.BLACK);
+		textArea.setForeground(Color.YELLOW);
 	}
 	
 	public static void setTextArea(ArrayList<String> value){
 		for(int i=0; i<value.size(); i++){
 		String temp = textArea.getText();
-		textArea.setText(temp + "\n" + value.get(i));
+		textArea.setText(value.get(i) + "\n" + temp  );
+		textArea.setBackground(Color.BLACK);
+		textArea.setForeground(Color.YELLOW);
 		}
 	}
 	

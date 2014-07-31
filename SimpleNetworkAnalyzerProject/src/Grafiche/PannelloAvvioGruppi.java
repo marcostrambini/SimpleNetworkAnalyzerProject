@@ -27,7 +27,7 @@ import javax.swing.JLabel;
 public class PannelloAvvioGruppi extends JFrame {
 
 	InterfacciaUtente iu;
-	private JButton buttonAvviaTutti = new JButton("Avvia Tutti");
+//	private JButton buttonAvviaTutti = new JButton("Avvia Tutti");
 	
 	public PannelloAvvioGruppi(final InterfacciaUtente iu) throws IOException{
 		ThreadRepository.flagGoInterrupt = false;
@@ -38,14 +38,23 @@ public class PannelloAvvioGruppi extends JFrame {
 		Point point = iu.getLocation();
 		setLocation(point.x+iu.getSize().width, point.y);
 		setTitle("Avvia Gruppi");
-		setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+		
+		
+	
+		
+		
+		
 		setVisible(true);
 		
 		
 		ArrayList<String> listaGruppi = tools.leggiFileRitorna(nomeFile);
-		setLayout(new GridLayout((listaGruppi.size()+1) , 1));
+	
+//	
+		setDefaultCloseOperation(DISPOSE_ON_CLOSE);	
 		
-		setSize(300, ((listaGruppi.size()-1)*50)+110);
+		setLayout(new GridLayout(listaGruppi.size() , 1));
+		
+		setSize(300, ((listaGruppi.size())*50));
 		System.out.println("size: "+listaGruppi.size());
 		
 		
@@ -54,7 +63,7 @@ public class PannelloAvvioGruppi extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent ev) {
 				JButton source = (JButton)ev.getSource();
-				if (source != buttonAvviaTutti){
+//				if (source != buttonAvviaTutti){
 				try {
 					int id = tools.getPosizioneDelGruppo(source.getText());
 					
@@ -66,16 +75,8 @@ public class PannelloAvvioGruppi extends JFrame {
 					e.printStackTrace();
 				}
 			
-				}
-				
-				if(source == buttonAvviaTutti){
-					
-					for(int i=0;i<(Init.listaGruppi.size()-1);i++){
-					String[][] tabFiltrata = tools.getTabellaFiltrata(Init.listaGruppi.get(i), tools.getTabellaClassificazioneDaArrayList());
-					FrameRepository.add(new PannelloMonitorElementiConNetStatus(tabFiltrata, Init.listaGruppi.get(i),PannelloAvvioGruppi.this, source, i));
-					}
-					
-				}
+//				}
+
 			}
 		};
 		
@@ -88,15 +89,11 @@ public class PannelloAvvioGruppi extends JFrame {
 		System.out.println("numero gruppi nell'array statico: " +Init.listaGruppi.size());
 		
 		button.addActionListener(listener);
-		buttonAvviaTutti.addActionListener(listener);
-			add(button);
+//		buttonAvviaTutti.addActionListener(listener);
+		
+		add(button);
 		}
-		
-		add(new JLabel());
-		add(buttonAvviaTutti);
-		
-		
-		
+	
 		this.addWindowListener(new WindowAdapter() 
 		{
 			public void windowClosing(WindowEvent e){

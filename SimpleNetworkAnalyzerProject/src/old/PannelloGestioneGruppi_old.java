@@ -1,4 +1,4 @@
-package Grafiche;
+package old;
 
 import it.nlmk.progetto01.Coloratore;
 import it.nlmk.progetto01.Configurazione;
@@ -23,6 +23,9 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+
+import Grafiche.FrameLog;
+import Grafiche.PannelloConfigurazione;
 
 /**
  * classe che genera un JFrame per la gestione di 5 gruppi per la classificazione degli indirizzi ip

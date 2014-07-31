@@ -3,6 +3,11 @@ package it.nlmk.progetto01;
 import java.io.IOException;
 import java.util.ArrayList;
 
+/**
+ * classe che inizializza degli array statici che contengono i nomi dei gruppi e la configurazione effettuata la volta precedente
+ * @author marcostrambini
+ *
+ */
 public class Init {
 
 	public static ArrayList<String> listaGruppi = new ArrayList<String>();

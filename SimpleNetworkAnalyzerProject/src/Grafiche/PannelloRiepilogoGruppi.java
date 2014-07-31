@@ -90,15 +90,5 @@ public class PannelloRiepilogoGruppi extends JFrame {
 				
 	}
 	
-	
-	
-	
-	
-	
-	public static void main(String[] args) throws IOException{
-		PannelloRiepilogoGruppi prg = new PannelloRiepilogoGruppi();
 		
-	}
-	
-	
 }

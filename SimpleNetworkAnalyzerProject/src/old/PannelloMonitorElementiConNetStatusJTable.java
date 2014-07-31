@@ -1,4 +1,4 @@
-package Grafiche;
+package old;
 
 import it.nlmk.progetto01.ThreadPing;
 import it.nlmk.progetto01.ThreadRepository;
@@ -18,6 +18,8 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
+
+import Grafiche.PannelloAvvioGruppi;
 
 /**
  * classe che prende in input la lista degli indirizzi ip passati

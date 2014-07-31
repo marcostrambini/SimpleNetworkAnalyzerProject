@@ -4,6 +4,7 @@ import it.nlmk.progetto01.Configurazione;
 import it.nlmk.progetto01.Flags;
 import it.nlmk.progetto01.FrameRepository;
 import it.nlmk.progetto01.ThreadRepository;
+import it.nlmk.progetto01.Tools;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -41,10 +42,7 @@ public class InterfacciaUtente extends JFrame {
 	private int altezza;
 	private JButton buttonConfig = new JButton("Configurazione");
 	private JButton buttonAvvio = new JButton("Avvio APP");
-	
-	
-	
-	
+
 	public void setEnableButtonConfig(){
 		this.buttonConfig.setEnabled(true);
 	}
@@ -88,6 +86,7 @@ public class InterfacciaUtente extends JFrame {
 		
 		Flags flags = new Flags();
 		Toolkit mioToolkit = Toolkit.getDefaultToolkit();
+		Tools tools = new Tools();
 		Dimension dimensioniSchermo = mioToolkit.getScreenSize();
 
 		int larghezzaFrame, altezzaFrame;
@@ -111,7 +110,7 @@ public class InterfacciaUtente extends JFrame {
 		// add(creaPannelloUtente(larghezzaFrame, altezzaFrame));
 
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
-		FrameLog.setTextArea("Aperto programma");
+		FrameLog.setTextArea("Aperto programma il "+tools.getDataOra());
 		setVisible(true);
 
 	}
@@ -164,21 +163,7 @@ public class InterfacciaUtente extends JFrame {
 						
 					}
 					
-//					if (source.getText() == "Stop APP") {
-//						buttonAvvio.setText("Avvio APP");
-//						buttonConfig.setEnabled(true);
-//						ThreadRepository.stopAllThread();
-//						FrameRepository.closeAllFrame();
-//					} 
-					
-//					else {
-//						buttonAvvio.setText("Stop APP");
-//						buttonConfig.setEnabled(true);
-//					}
-					
-					
-					
-					
+			
 				}
 
 				if (source == buttonConfig) {

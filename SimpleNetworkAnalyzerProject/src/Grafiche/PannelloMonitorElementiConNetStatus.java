@@ -8,6 +8,8 @@ import java.awt.BorderLayout;
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
 import java.awt.Point;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.io.IOException;
@@ -18,6 +20,7 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JRootPane;
 import javax.swing.JScrollPane;
 
 /**
@@ -38,40 +41,46 @@ public class PannelloMonitorElementiConNetStatus extends JFrame {
 	
     	Point point = pag.getLocation();
 	setLocation(point.x+pag.getSize().width+ (id*50), point.y+(id*50));
-    	
-    	
+//	setUndecorated(true);
+
     	button.setEnabled(false);
-    int altezza =0;
+    	
+    	int altezza =0;
     
-    if (listaIp.length<20)
-    	altezza = listaIp.length * 55;
+    
+    	JPanel panelButton =  new JPanel();
+    
+    if (listaIp.length<20){
+    	if(listaIp.length<1){
+    		altezza = 70;
+    		panelButton.add(new JLabel("Nessun elemento"));
+    		setUndecorated(false);
+    		
+    	}
+    	else   		
+    		altezza = listaIp.length * 55;
+    }
     else
     	altezza = 1100;
 	
 	
 	setTitle("Gruppo: "+nomePannello);
-	setDefaultCloseOperation(DISPOSE_ON_CLOSE);
-    
 	
 	
-	
-	JPanel panelButton =  new JPanel();
-	
+	if(listaIp.length>0)
+		setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
+	else
+		setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+
 	panelButton.setLayout(new GridLayout(listaIp.length, 1));
 	
 	
 	for(int i =0; i<listaIp.length; i++){
 		NetStatusDevice nsd = new NetStatusDevice(listaIp[i][0], listaIp[i][2]);
-		panelButton.add(nsd);
+		panelButton.add(nsd, BorderLayout.WEST);
 
 	}
-	
-	
 
-	
-	
-	
-	//
     
 	JScrollPane jsp = new JScrollPane(panelButton);
 	jsp.setSize(500, altezza);
@@ -84,43 +93,20 @@ public class PannelloMonitorElementiConNetStatus extends JFrame {
 	
 
 	panelButton.setSize(500, altezza);
-	
-	this.addWindowListener(new WindowAdapter() 
-	{
-		public void windowClosing(WindowEvent e){
-			button.setEnabled(true);
 
-		}
-		
-	});
+
+	
+//	this.addWindowListener(new WindowAdapter() 
+//	{
+//		public void windowClosing(WindowEvent e){
+//			button.setEnabled(true);
+//
+//		}
+//		
+//	});
 	
 	this.setVisible(true);	
 	}
-	
-    
-    
-    
-    
-    
-    
-//    public static void main(String[] args) throws IOException{
-//    	Tools tools = new Tools();
-//    	ArrayList<String> listaGruppi = tools.leggiFileRitorna("groups.ini");
-//    	
-//    	String[][] tabFiltrata1 = tools.getTabellaFiltrata(listaGruppi.get(1), tools.getTabellaClassificazione());
-//    	
-//
-//    	String ip="";
-//    	
-//
-//    	
-//    	for(int i=0; i<tabFiltrata1.length; i++)
-//    		System.out.println(tabFiltrata1[i][0]);
-//    	
-//    	
-//    	String[][] tabFiltrata2 = tools.getTabellaFiltrata(tools.getGruppoAllaPosizione(0), tools.getTabellaClassificazione());
-//    	PannelloMonitorElementiConNetStatus pme = new PannelloMonitorElementiConNetStatus(tabFiltrata1, tools.getGruppoAllaPosizione(1) );
-//    	PannelloMonitorElementiConNetStatus pme2 = new PannelloMonitorElementiConNetStatus(tabFiltrata2, tools.getGruppoAllaPosizione(0));
-//    }
+
 	
 }

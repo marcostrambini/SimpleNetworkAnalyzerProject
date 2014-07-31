@@ -1,4 +1,4 @@
-package Grafiche;
+package old;
 
 import it.nlmk.progetto01.Configurazione;
 import it.nlmk.progetto01.Tools;

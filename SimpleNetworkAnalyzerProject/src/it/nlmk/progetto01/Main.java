@@ -1,13 +1,11 @@
-package Test;
+package it.nlmk.progetto01;
 
 import java.io.FileNotFoundException;
 
-import it.nlmk.progetto01.Init;
-import it.nlmk.progetto01.Tools;
 import Grafiche.FrameLog;
 import Grafiche.InterfacciaUtente;
 
-public class TestInterfacciaUtente {
+public class Main {
 
 	/**
 	 * @param args

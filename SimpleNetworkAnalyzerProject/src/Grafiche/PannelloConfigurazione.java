@@ -65,16 +65,11 @@ public class PannelloConfigurazione extends JFrame {
 		Point point = iu.getLocation();
 		
 		this.setLocation(point.x+iu.getSize().width, point.y);
-//		this.setLocation(iu.getPositionX() + iu.getSize().width , (int) iu.getPositionY());
 		posX = iu.getPositionX()+iu.getSize().width;
 		posY = iu.getPositionY();
 		
 		System.out.println("posizione X iniziale pannello configurazione = "+posX);
 		System.out.println("posizione Y iniziale pannello configurazione = "+posY);
-		
-//		final JButton buttonFileConfig = new JButton("Configurazione Network");
-//		final JButton buttonGestGruppi = new JButton("Gestione Gruppi");
-//		final JButton buttonClassicazione = new JButton("Classificazione");
 
 		ActionListener listener = new ActionListener() {
 			
@@ -142,14 +137,7 @@ public class PannelloConfigurazione extends JFrame {
 			}
 			
 		});
-		
-		
-		
-		
-		
-		
-		
-		
+
 		this.setVisible(true);
 	}
 

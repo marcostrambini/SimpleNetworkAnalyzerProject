@@ -63,10 +63,6 @@ public class PannelloGestioneGruppi extends JFrame{
 		setTitle("Gestione Gruppi");
 		setSize(300, 50 + (50*numeroGruppiEsistenti));
 		setDefaultCloseOperation(DISPOSE_ON_CLOSE);
-//		setLayout(new GridLayout(6,2));
-		
-
-		
 		
 		panelHead.setLayout(new GridLayout(1, 2));
 		panelHead.add(labelHead);
@@ -76,8 +72,6 @@ public class PannelloGestioneGruppi extends JFrame{
 		//aggiungo elementi al body
 		refreshBody();
 		
-
-		
 		panelControls.setLayout(new GridLayout(1, 2));
 		panelControls.add(buttonAggiungi);
 		panelControls.add(buttonRegistra);
@@ -86,12 +80,7 @@ public class PannelloGestioneGruppi extends JFrame{
 		add(panelHead, BorderLayout.NORTH);
 		add(panelBody, BorderLayout.CENTER);
 		add(panelControls, BorderLayout.SOUTH);
-		
-		
-
-		
-//		refreshEsistente();
-		
+			
 		
 		ActionListener listener = new ActionListener(){
 
@@ -144,22 +133,15 @@ public class PannelloGestioneGruppi extends JFrame{
 			
 					e1.printStackTrace();
 				}
-				
-//				try {
-//					refreshEsistente();
-//				} catch (IOException e) {
-//				System.out.println("problemi con il refresh");
-//				}
+
 			
 			}
 			
 			
 			if (source == buttonAggiungi){
-//				System.out.println("lista gruppi prima di ADD: "+Init.listaGruppi.size());
+
 				numeroGruppiEsistenti++;
 				Init.listaGruppi.add("");
-				
-//				System.out.println("lista gruppi dopo ADD: "+Init.listaGruppi.size());
 				refreshBody();
 				labelInfo.setText("");
 			}
@@ -189,7 +171,14 @@ public class PannelloGestioneGruppi extends JFrame{
 	public void refreshBody(){
 //		aggiungo elementi al body
 	
-		labelHead.setText("Gruppi esistenti: "+ numeroGruppiEsistenti);
+		int gruppiRicalcolati = 0;
+		if(numeroGruppiEsistenti<0)
+			gruppiRicalcolati =0;
+		else
+			gruppiRicalcolati = numeroGruppiEsistenti;
+			
+		
+		labelHead.setText("Gruppi esistenti: "+ gruppiRicalcolati);
 		
 		panelBody.removeAll();
 		listaTempObject.removeAll(listaTempObject);
@@ -207,7 +196,7 @@ public class PannelloGestioneGruppi extends JFrame{
 		
 		
 		
-		for(int i =0; i<numeroGruppiEsistenti;i++){
+		for(int i =0; i<gruppiRicalcolati;i++){
 			panelBody.add(new JLabel("Gruppo "+ (i+1) + " : "));
 			JTextField jtf = new JTextField(Init.listaGruppi.get(i+1));
 			panelBody.add(jtf);
@@ -219,46 +208,5 @@ public class PannelloGestioneGruppi extends JFrame{
 		repaint();
 	}
 	
-//	/**
-//	 * metodo che legge il file che contiene la lista dei gruppi e ne ripropone i valori
-//	 * @throws IOException
-//	 */
-//	private void refreshEsistente() throws IOException{
-//		String nomeFile = "groups.ini";
-//		
-//		String[] arrayRigheFile;
-//		
-//		if (tools.esisteFile(nomeFile)){
-//		     textGp05.setText("");
-//		     textGp04.setText("");
-//		     textGp03.setText("");
-//		     textGp02.setText("");
-//		     textGp01.setText("");
-//			
-//			
-//			ArrayList<String> listRigheFile = tools.leggiFileRitorna(nomeFile);
-//			arrayRigheFile = tools.listToArray(listRigheFile);
-//			
-//			switch(arrayRigheFile.length){
-//			case 6: textGp05.setText(arrayRigheFile[5]);
-//			case 5: textGp04.setText(arrayRigheFile[4]);
-//			case 4:	textGp03.setText(arrayRigheFile[3]);
-//			case 3: textGp02.setText(arrayRigheFile[2]);
-//			case 2: textGp01.setText(arrayRigheFile[1]);
-//			case 1: System.out.println("file dei gruppi vuoto");
-//			}
-//				
-//				
-//		}
-//	}
-	
-public static void main (String[] args){
-Tools.repoString.add("ciao");
-Tools.repoString.add("pippo");
-for(String s: Tools.repoString)
-System.out.println(s);
-
-
-}
 
 }

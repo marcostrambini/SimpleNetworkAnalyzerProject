@@ -1,4 +1,7 @@
-package it.nlmk.progetto01;
+package old;
+
+import it.nlmk.progetto01.Configurazione;
+import it.nlmk.progetto01.Tools;
 
 import java.io.IOException;
 import java.io.ObjectInputStream.GetField;
